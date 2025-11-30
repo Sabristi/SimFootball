@@ -1,0 +1,84 @@
+[
+  {
+    "id": "COMP-MAR-BP1",
+    "name": "Botola Pro 1 Inwi",
+    "shortName": "Botola Pro 1",
+    "type": "League",
+    "scope": "Domestic",
+    "countryId": "MAR",
+    "confederationId": "CAF",
+    "format": {
+      "teamsCount": 16,
+      "homeAndAway": true,
+      "pointsForWin": 3,
+      "pointsForDraw": 1,
+      "pointsForLoss": 0,
+      "tieBreakers": [
+        "H2H",
+        "GD",
+        "GF"
+      ]
+    },
+    "qualificationSlots": [
+      {
+        "rank": 1,
+        "targetCompetitionId": "COMP-CAF-CL",
+        "label": "CAF Champions League",
+        "colorHex": "00FF00"
+      },
+      {
+        "rank": 2,
+        "targetCompetitionId": "COMP-CAF-CL",
+        "label": "CAF Champions League",
+        "colorHex": "00FF00"
+      },
+      {
+        "rank": 3,
+        "targetCompetitionId": "COMP-CAF-CC",
+        "label": "CAF Confederation Cup",
+        "colorHex": "FFFF00"
+      }
+    ]
+  },
+  {
+    "id": "COMP-MAR-BP2",
+    "name": "Botola Pro 2 Inwi",
+    "shortName": "Botola Pro 2",
+    "type": "League",
+    "scope": "Domestic",
+    "countryId": "MAR",
+    "confederationId": "CAF",
+    "format": {
+      "teamsCount": 16,
+      "homeAndAway": true,
+      "pointsForWin": 3,
+      "pointsForDraw": 1,
+      "pointsForLoss": 0,
+      "tieBreakers": [
+        "H2H",
+        "GD",
+        "GF"
+      ]
+    },
+    "qualificationSlots": [
+      {
+        "rank": 1,
+        "targetCompetitionId": "COMP-CAF-CL",
+        "label": "CAF Champions League",
+        "colorHex": "00FF00"
+      },
+      {
+        "rank": 2,
+        "targetCompetitionId": "COMP-CAF-CL",
+        "label": "CAF Champions League",
+        "colorHex": "00FF00"
+      },
+      {
+        "rank": 3,
+        "targetCompetitionId": "COMP-CAF-CC",
+        "label": "CAF Confederation Cup",
+        "colorHex": "FFFF00"
+      }
+    ]
+  }
+]

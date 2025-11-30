@@ -1,0 +1,20 @@
+[
+  {
+    "id": "STAGE_MAR_BP1_REG",
+    "name": "Regular Season",
+    "type": "League",
+    "order": 1,
+    "homeAndAway": true,
+    "groupsCount": null,
+    "pointsForWin": 3,
+    "pointsForDraw": 1,
+    "pointsForLoss": 0,
+    "tieBreakers": [
+      "GD",
+      "GF",
+      "H2H"
+    ],
+    "nextStageId": null,
+    "usesTable": true
+  }
+]

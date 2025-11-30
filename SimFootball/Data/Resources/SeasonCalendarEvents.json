@@ -1,0 +1,20 @@
+[
+  {
+    "id": "EVT-DRAW-BOTOLA-2025",
+    "seasonId": "S_2025_26",
+    "calendarDayId": "DAY_2025_07_21",
+    "eventType": "Draw",
+    "refType": "CompetitionSeason",
+    "refId": "COMP-MAR-BP1",
+    "label": "Tirage au sort - Botola Pro 1",
+    "description": "La fédération royale marocaine de football vous invite à assister au tirage au sort du calendrier pour la saison 2025/2026. Votre présence est requise.",
+    "time": "2025-07-21T19:00:00Z",
+    "colorHex": "#FFD700",
+    "action": {
+      "label": "Assister au tirage",
+      "type": "Navigation",
+      "targetScreen": "CompetitionDraw",
+      "isCompleted": false
+    }
+  }
+]

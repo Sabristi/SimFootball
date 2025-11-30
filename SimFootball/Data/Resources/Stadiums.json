@@ -1,0 +1,69 @@
+[
+  {
+    "id": "STAD-MAR-001",
+    "name": "Stade Mohammed V",
+    "cityId": "CITY-MAR-CAS",
+    "countryId": "MAR",
+    "capacity": 67000,
+    "altitude": 50,
+    "surface": "Grass",
+    "yearBuilt": 1955,
+    "hasRoof": false
+  },
+  {
+    "id": "STAD-MAR-002",
+    "name": "Complexe Sportif Moulay Abdellah",
+    "cityId": "CITY-MAR-RBA",
+    "countryId": "MAR",
+    "capacity": 53000,
+    "altitude": 75,
+    "surface": "Grass",
+    "yearBuilt": 1983,
+    "hasRoof": true
+  },
+  {
+    "id": "STAD-MAR-003",
+    "name": "Grand Stade de Tanger (Ibn Batouta)",
+    "cityId": "CITY-MAR-TNG",
+    "countryId": "MAR",
+    "capacity": 65000,
+    "altitude": 20,
+    "surface": "Grass",
+    "yearBuilt": 2011,
+    "hasRoof": true
+  },
+  {
+    "id": "STAD-MAR-004",
+    "name": "Grand Stade de Marrakech",
+    "cityId": "CITY-MAR-RAK",
+    "countryId": "MAR",
+    "capacity": 45240,
+    "altitude": 460,
+    "surface": "Grass",
+    "yearBuilt": 2011,
+    "hasRoof": false
+  },
+  {
+    "id": "STAD-MAR-005",
+    "name": "Stade Adrar",
+    "cityId": "CITY-MAR-AGA",
+    "countryId": "MAR",
+    "capacity": 45480,
+    "altitude": 100,
+    "surface": "Grass",
+    "yearBuilt": 2013,
+    "hasRoof": false
+  },
+  {
+    "id": "STAD-MAR-006",
+    "name": "Complexe Sportif de Fès",
+    "cityId": "CITY-MAR-FEZ",
+    "countryId": "MAR",
+    "capacity": 45000,
+    "altitude": 400,
+    "surface": "Grass",
+    "yearBuilt": 2007,
+    "hasRoof": false
+  }
+]
+

@@ -1,0 +1,11 @@
+[
+  {
+    "id": "S_2025_26",
+    "label": "2025/2026",
+    "startDate": "2025-07-01T00:00:00Z",
+    "endDate": "2026-06-30T23:59:59Z",
+    "currentDate": "2025-07-15T12:00:00Z",
+    "status": "Planned",
+    "isCurrent": true
+  }
+]

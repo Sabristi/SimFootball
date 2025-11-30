@@ -1,0 +1,376 @@
+[
+  {
+    "id": "CLUB-MAR-RCA",
+    "name": "Raja Club Athletic",
+    "shortName": "Raja CA",
+    "foundedYear": 1949,
+    "countryId": "MAR",
+    "cityId": "CITY-MAR-CAS",
+    "stadiumId": "STAD-MAR-001",
+    "reputation": 7500,
+    "identity": {
+      "primaryColor": "008000",
+      "secondaryColor": "FFFFFF",
+      "nickname": "Les Aigles Verts",
+      "style": "Possession"
+    },
+    "finances": {
+      "balance": 5000000,
+      "transferBudget": 1000000,
+      "wageBudget": 50000
+    },
+    "rivalClubIds": ["CLUB-MAR-WAC"]
+  },
+  {
+    "id": "CLUB-MAR-WAC",
+    "name": "Wydad Athletic Club",
+    "shortName": "Wydad AC",
+    "foundedYear": 1937,
+    "countryId": "MAR",
+    "cityId": "CITY-MAR-CAS",
+    "stadiumId": "STAD-MAR-001",
+    "reputation": 7500,
+    "identity": {
+      "primaryColor": "FF0000",
+      "secondaryColor": "FFFFFF",
+      "nickname": "Wydad Al Oumma",
+      "style": "Direct"
+    },
+    "finances": {
+      "balance": 5000000,
+      "transferBudget": 1000000,
+      "wageBudget": 50000
+    },
+    "rivalClubIds": ["CLUB-MAR-RCA"]
+  },
+  {
+    "id": "CLUB-MAR-FAR",
+    "name": "AS FAR",
+    "shortName": "AS FAR",
+    "foundedYear": 1958,
+    "countryId": "MAR",
+    "cityId": "CITY-MAR-RBA",
+    "stadiumId": "STAD-MAR-002",
+    "reputation": 7000,
+    "identity": {
+      "primaryColor": "000000",
+      "secondaryColor": "008000",
+      "nickname": "Les Militaires",
+      "style": "Balanced"
+    },
+    "finances": {
+      "balance": 4000000,
+      "transferBudget": 800000,
+      "wageBudget": 40000
+    },
+    "rivalClubIds": ["CLUB-MAR-FUS"]
+  },
+  {
+    "id": "CLUB-MAR-FUS",
+    "name": "Fath Union Sport",
+    "shortName": "FUS Rabat",
+    "foundedYear": 1946,
+    "countryId": "MAR",
+    "cityId": "CITY-MAR-RBA",
+    "stadiumId": "STAD-MAR-002",
+    "reputation": 6500,
+    "identity": {
+      "primaryColor": "FFFFFF",
+      "secondaryColor": "FF0000",
+      "nickname": "FUS",
+      "style": "Technical"
+    },
+    "finances": {
+      "balance": 3000000,
+      "transferBudget": 500000,
+      "wageBudget": 30000
+    },
+    "rivalClubIds": ["CLUB-MAR-FAR"]
+  },
+  {
+    "id": "CLUB-MAR-IRT",
+    "name": "Ittihad Riadi Tanger",
+    "shortName": "IR Tanger",
+    "foundedYear": 1983,
+    "countryId": "MAR",
+    "cityId": "CITY-MAR-TNG",
+    "stadiumId": "STAD-MAR-003",
+    "reputation": 6000,
+    "identity": {
+      "primaryColor": "0000FF",
+      "secondaryColor": "FFFFFF",
+      "nickname": "Faris Al Boughaz",
+      "style": "Balanced"
+    },
+    "finances": {
+      "balance": 2000000,
+      "transferBudget": 300000,
+      "wageBudget": 25000
+    },
+    "rivalClubIds": ["CLUB-MAR-MAT"]
+  },
+  {
+    "id": "CLUB-MAR-MAS",
+    "name": "Maghreb Association Sportive de Fès",
+    "shortName": "MAS Fès",
+    "foundedYear": 1946,
+    "countryId": "MAR",
+    "cityId": "CITY-MAR-FEZ",
+    "stadiumId": "STAD-MAR-006",
+    "reputation": 6200,
+    "identity": {
+      "primaryColor": "FFFF00",
+      "secondaryColor": "000000",
+      "nickname": "Les Tigres",
+      "style": "Direct"
+    },
+    "finances": {
+      "balance": 1500000,
+      "transferBudget": 200000,
+      "wageBudget": 20000
+    },
+    "rivalClubIds": []
+  },
+  {
+    "id": "CLUB-MAR-RSB",
+    "name": "Renaissance Sportive de Berkane",
+    "shortName": "RS Berkane",
+    "foundedYear": 1938,
+    "countryId": "MAR",
+    "cityId": "CITY-MAR-OUD",
+    "stadiumId": null,
+    "reputation": 6800,
+    "identity": {
+      "primaryColor": "FF8000",
+      "secondaryColor": "000000",
+      "nickname": "Les Oranges",
+      "style": "Possession"
+    },
+    "finances": {
+      "balance": 3500000,
+      "transferBudget": 600000,
+      "wageBudget": 35000
+    },
+    "rivalClubIds": ["CLUB-MAR-MCO"]
+  },
+  {
+    "id": "CLUB-MAR-HUSA",
+    "name": "Hassania Union Sport Agadir",
+    "shortName": "Hassania Agadir",
+    "foundedYear": 1946,
+    "countryId": "MAR",
+    "cityId": "CITY-MAR-AGA",
+    "stadiumId": "STAD-MAR-005",
+    "reputation": 5800,
+    "identity": {
+      "primaryColor": "FF0000",
+      "secondaryColor": "FFFFFF",
+      "nickname": "Ghazal Souss",
+      "style": "Counter-Attack"
+    },
+    "finances": {
+      "balance": 1000000,
+      "transferBudget": 150000,
+      "wageBudget": 18000
+    },
+    "rivalClubIds": []
+  },
+  {
+    "id": "CLUB-MAR-OCS",
+    "name": "Olympique Club de Safi",
+    "shortName": "OC Safi",
+    "foundedYear": 1921,
+    "countryId": "MAR",
+    "cityId": null,
+    "stadiumId": null,
+    "reputation": 5500,
+    "identity": {
+      "primaryColor": "0000FF",
+      "secondaryColor": "FF0000",
+      "nickname": "Le Requin Bleu",
+      "style": "Physical"
+    },
+    "finances": {
+      "balance": 800000,
+      "transferBudget": 100000,
+      "wageBudget": 15000
+    },
+    "rivalClubIds": []
+  },
+  {
+    "id": "CLUB-MAR-MCO",
+    "name": "Mouloudia Club d'Oujda",
+    "shortName": "MC Oujda",
+    "foundedYear": 1946,
+    "countryId": "MAR",
+    "cityId": "CITY-MAR-OUD",
+    "stadiumId": null,
+    "reputation": 5400,
+    "identity": {
+      "primaryColor": "008000",
+      "secondaryColor": "FFFFFF",
+      "nickname": "Sindbad El Sharq",
+      "style": "Direct"
+    },
+    "finances": {
+      "balance": 700000,
+      "transferBudget": 80000,
+      "wageBudget": 14000
+    },
+    "rivalClubIds": ["CLUB-MAR-RSB"]
+  },
+  {
+    "id": "CLUB-MAR-MAT",
+    "name": "Moghreb Atlético Tétouan",
+    "shortName": "MA Tétouan",
+    "foundedYear": 1922,
+    "countryId": "MAR",
+    "cityId": "CITY-MAR-TET",
+    "stadiumId": null,
+    "reputation": 5900,
+    "identity": {
+      "primaryColor": "FF0000",
+      "secondaryColor": "FFFFFF",
+      "nickname": "Los Matadores",
+      "style": "Technical"
+    },
+    "finances": {
+      "balance": 1200000,
+      "transferBudget": 200000,
+      "wageBudget": 20000
+    },
+    "rivalClubIds": ["CLUB-MAR-IRT"]
+  },
+  {
+    "id": "CLUB-MAR-JSS",
+    "name": "Jeunesse Sportive Soualem",
+    "shortName": "JS Soualem",
+    "foundedYear": 1984,
+    "countryId": "MAR",
+    "cityId": null,
+    "stadiumId": null,
+    "reputation": 4500,
+    "identity": {
+      "primaryColor": "0000FF",
+      "secondaryColor": "FFFF00",
+      "nickname": "JSS",
+      "style": "Balanced"
+    },
+    "finances": {
+      "balance": 500000,
+      "transferBudget": 50000,
+      "wageBudget": 10000
+    },
+    "rivalClubIds": []
+  },
+  {
+    "id": "CLUB-MAR-SCCM",
+    "name": "Chabab Mohammédia",
+    "shortName": "SCC Mohammédia",
+    "foundedYear": 1948,
+    "countryId": "MAR",
+    "cityId": null,
+    "stadiumId": null,
+    "reputation": 5000,
+    "identity": {
+      "primaryColor": "FF0000",
+      "secondaryColor": "000000",
+      "nickname": "Fédala",
+      "style": "Balanced"
+    },
+    "finances": {
+      "balance": 600000,
+      "transferBudget": 70000,
+      "wageBudget": 12000
+    },
+    "rivalClubIds": []
+  },
+  {
+    "id": "CLUB-MAR-UTS",
+    "name": "Union Touarga Sport",
+    "shortName": "US Touarga",
+    "foundedYear": 1969,
+    "countryId": "MAR",
+    "cityId": "CITY-MAR-RBA",
+    "stadiumId": null,
+    "reputation": 4800,
+    "identity": {
+      "primaryColor": "FFFF00",
+      "secondaryColor": "008000",
+      "nickname": "UTS",
+      "style": "Defensive"
+    },
+    "finances": {
+      "balance": 900000,
+      "transferBudget": 100000,
+      "wageBudget": 15000
+    },
+    "rivalClubIds": []
+  },
+  {
+    "id": "CLUB-MAR-RCAZ",
+    "name": "Renaissance Club Athletic Zemamra",
+    "shortName": "RCA Zemamra",
+    "foundedYear": 1977,
+    "countryId": "MAR",
+    "cityId": null,
+    "stadiumId": null,
+    "reputation": 4200,
+    "identity": {
+      "primaryColor": "0000FF",
+      "secondaryColor": "FFFF00",
+      "nickname": "RCAZ",
+      "style": "Counter-Attack"
+    },
+    "finances": {
+      "balance": 400000,
+      "transferBudget": 40000,
+      "wageBudget": 9000
+    },
+    "rivalClubIds": []
+  },
+  {
+    "id": "CLUB-MAR-CAYB",
+    "name": "Club Athletic Youssoufia Berrechid",
+    "shortName": "CAY Berrechid",
+    "foundedYear": 1927,
+    "countryId": "MAR",
+    "cityId": null,
+    "stadiumId": null,
+    "reputation": 4300,
+    "identity": {
+      "primaryColor": "008000",
+      "secondaryColor": "000000",
+      "nickname": "CAYB",
+      "style": "Physical"
+    },
+    "finances": {
+      "balance": 450000,
+      "transferBudget": 45000,
+      "wageBudget": 9500
+    },
+    "rivalClubIds": []
+  },
+  {
+    "id": "CLUB-FRA-PSG",
+    "name": "Paris Saint-Germain",
+    "shortName": "PSG",
+    "foundedYear": 1970,
+    "countryId": "FRA",
+    "cityId": "CITY-FRA-001",
+    "stadiumId": null,
+    "reputation": 9200,
+    "identity": {
+      "primaryColor": "000040",
+      "secondaryColor": "FF0000",
+      "nickname": "Les Parisiens",
+      "style": "Attacking"
+    },
+    "finances": {
+      "balance": 200000000,
+      "transferBudget": 150000000,
+      "wageBudget": 4000000
+    },
+    "rivalClubIds": []
+  }
+]

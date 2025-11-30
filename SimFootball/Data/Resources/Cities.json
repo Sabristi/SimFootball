@@ -1,0 +1,92 @@
+[
+  {
+    "id": "CITY-MAR-RBA",
+    "name": "Rabat",
+    "countryId": "MAR",
+    "population": 577827,
+    "rank": "Major City",
+    "capitalType": "Standard",
+    "recordTypeId": "Capital"
+  },
+  {
+    "id": "CITY-MAR-CAS",
+    "name": "Casablanca",
+    "countryId": "MAR",
+    "population": 3359818,
+    "rank": "Metropolis",
+    "capitalType": "None",
+    "recordTypeId": "Standard"
+  },
+  {
+    "id": "CITY-MAR-FEZ",
+    "name": "Fez",
+    "countryId": "MAR",
+    "population": 1112072,
+    "rank": "Major City",
+    "capitalType": "None",
+    "recordTypeId": "Standard"
+  },
+  {
+    "id": "CITY-MAR-TNG",
+    "name": "Tangier",
+    "countryId": "MAR",
+    "population": 947952,
+    "rank": "Major City",
+    "capitalType": "None",
+    "recordTypeId": "Standard"
+  },
+  {
+    "id": "CITY-MAR-RAK",
+    "name": "Marrakech",
+    "countryId": "MAR",
+    "population": 928850,
+    "rank": "Major City",
+    "capitalType": "None",
+    "recordTypeId": "Standard"
+  },
+  {
+    "id": "CITY-MAR-MEK",
+    "name": "Meknes",
+    "countryId": "MAR",
+    "population": 632079,
+    "rank": "Major City",
+    "capitalType": "None",
+    "recordTypeId": "Standard"
+  },
+  {
+    "id": "CITY-MAR-AGA",
+    "name": "Agadir",
+    "countryId": "MAR",
+    "population": 421844,
+    "rank": "Major City",
+    "capitalType": "None",
+    "recordTypeId": "Standard"
+  },
+  {
+    "id": "CITY-MAR-OUD",
+    "name": "Oujda",
+    "countryId": "MAR",
+    "population": 494252,
+    "rank": "Major City",
+    "capitalType": "None",
+    "recordTypeId": "Standard"
+  },
+  {
+    "id": "CITY-MAR-KEN",
+    "name": "Kenitra",
+    "countryId": "MAR",
+    "population": 431282,
+    "rank": "Major City",
+    "capitalType": "None",
+    "recordTypeId": "Standard"
+  },
+  {
+    "id": "CITY-MAR-TET",
+    "name": "Tetouan",
+    "countryId": "MAR",
+    "population": 380787,
+    "rank": "Town",
+    "capitalType": "None",
+    "recordTypeId": "Standard"
+  }
+]

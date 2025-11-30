@@ -1,0 +1,30 @@
+[
+  {
+    "id": "CS_BOTOLA_PRO_1_2025_26",
+    "seasonId": "S_2025_26",
+    "competitionId": "COMP-MAR-BP1",
+    "currentStageId": "STAGE_BOTOLA_REG",
+    "yearLabel": "2025/26",
+    "startDate": "2025-08-20T00:00:00Z",
+    "endDate": "2026-05-30T00:00:00Z",
+    "status": "Not Scheduled",
+    "teamIds": [
+      "CLUB-MAR-RCA",
+      "CLUB-MAR-WAC",
+      "CLUB-MAR-FAR",
+      "CLUB-MAR-FUS",
+      "CLUB-MAR-IRT",
+      "CLUB-MAR-MAS",
+      "CLUB-MAR-RSB",
+      "CLUB-MAR-HUSA",
+      "CLUB-MAR-OCS",
+      "CLUB-MAR-MCO",
+      "CLUB-MAR-MAT",
+      "CLUB-MAR-JSS",
+      "CLUB-MAR-SCCM",
+      "CLUB-MAR-UTS",
+      "CLUB-MAR-RCAZ",
+      "CLUB-MAR-CAYB"
+    ]
+  }
+]

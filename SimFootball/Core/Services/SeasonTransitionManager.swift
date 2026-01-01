@@ -59,8 +59,7 @@ class SeasonTransitionManager {
         
         // 🛠️ DEBUG & FIX : Si la liste est vide (problème de décodage), on force le MAROC
         if selectedCountryIds.isEmpty {
-                    print("⚠️ [DEBUG] selectedCountries est vide (Erreur décodage ?). Utilisation du Fallback : ['MAR']")
-                    //selectedCountryIds = ["MAR"]
+                    print("⚠️ [DEBUG] selectedCountries est vide (Erreur décodage ?)")
         } else {
                     print("✅ [DEBUG] Pays sélectionnés chargés : \(selectedCountryIds)")
         }

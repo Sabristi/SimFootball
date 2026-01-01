@@ -1,0 +1,247 @@
+[
+  {
+      "id": "DAY_2025_08_15",
+      "seasonId": "S_2025_26",
+      "date": "2025-08-15T00:00:00Z",
+      "matchDayIds": [],
+      "eventIds": ["EVT-DRAW-BP1-2025","EVT-DRAW-BP2-2025"]
+  },
+  {
+        "id": "DAY_2025_07_16",
+        "seasonId": "S_2025_26",
+        "date": "2025-07-16T00:00:00Z",
+        "matchDayIds": [],
+        "eventIds": ["EVT-DRAW-CT-R32-2025"]
+  },
+  {
+        "id": "DAY_2025_07_19",
+        "seasonId": "S_2025_26",
+        "date": "2025-07-19T00:00:00Z",
+        "matchDayIds": [],
+        "eventIds": ["EVT-DRAW-CT-R16-2025"]
+  },
+  {
+    "id": "DAY_2025_07_18",
+    "seasonId": "S_2025_26",
+    "date": "2025-07-18T00:00:00Z",
+    "matchDayIds": ["MD-CT-R32"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_07_21",
+    "seasonId": "S_2025_26",
+    "date": "2025-07-21T00:00:00Z",
+    "matchDayIds": ["MD-CT-R16"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_08_23",
+    "seasonId": "S_2025_26",
+    "date": "2025-08-23T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J01"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_08_30",
+    "seasonId": "S_2025_26",
+    "date": "2025-08-30T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J02"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_09_06",
+    "seasonId": "S_2025_26",
+    "date": "2025-09-06T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J03"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_09_13",
+    "seasonId": "S_2025_26",
+    "date": "2025-09-13T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J04"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_09_20",
+    "seasonId": "S_2025_26",
+    "date": "2025-09-20T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J05"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_09_27",
+    "seasonId": "S_2025_26",
+    "date": "2025-09-27T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J06"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_10_04",
+    "seasonId": "S_2025_26",
+    "date": "2025-10-04T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J07"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_10_11",
+    "seasonId": "S_2025_26",
+    "date": "2025-10-11T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J08"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_10_18",
+    "seasonId": "S_2025_26",
+    "date": "2025-10-18T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J09"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_10_25",
+    "seasonId": "S_2025_26",
+    "date": "2025-10-25T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J10"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_11_01",
+    "seasonId": "S_2025_26",
+    "date": "2025-11-01T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J11"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_11_08",
+    "seasonId": "S_2025_26",
+    "date": "2025-11-08T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J12"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_11_15",
+    "seasonId": "S_2025_26",
+    "date": "2025-11-15T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J13"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_11_22",
+    "seasonId": "S_2025_26",
+    "date": "2025-11-22T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J14"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_11_29",
+    "seasonId": "S_2025_26",
+    "date": "2025-11-29T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J15"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_12_06",
+    "seasonId": "S_2025_26",
+    "date": "2025-12-06T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J16"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_12_13",
+    "seasonId": "S_2025_26",
+    "date": "2025-12-13T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J17"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2025_12_20",
+    "seasonId": "S_2025_26",
+    "date": "2025-12-20T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J18"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2026_01_03",
+    "seasonId": "S_2025_26",
+    "date": "2026-01-03T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J19"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2026_01_10",
+    "seasonId": "S_2025_26",
+    "date": "2026-01-10T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J20"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2026_01_17",
+    "seasonId": "S_2025_26",
+    "date": "2026-01-17T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J21"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2026_01_24",
+    "seasonId": "S_2025_26",
+    "date": "2026-01-24T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J22"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2026_01_31",
+    "seasonId": "S_2025_26",
+    "date": "2026-01-31T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J23"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2026_02_07",
+    "seasonId": "S_2025_26",
+    "date": "2026-02-07T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J24"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2026_02_14",
+    "seasonId": "S_2025_26",
+    "date": "2026-02-14T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J25"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2026_02_21",
+    "seasonId": "S_2025_26",
+    "date": "2026-02-21T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J26"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2026_02_28",
+    "seasonId": "S_2025_26",
+    "date": "2026-02-28T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J27"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2026_03_07",
+    "seasonId": "S_2025_26",
+    "date": "2026-03-07T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J28"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2026_03_14",
+    "seasonId": "S_2025_26",
+    "date": "2026-03-14T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J29"],
+    "eventIds": []
+  },
+  {
+    "id": "DAY_2026_03_21",
+    "seasonId": "S_2025_26",
+    "date": "2026-03-21T00:00:00Z",
+    "matchDayIds": ["MD-BP1-J30"],
+    "eventIds": []
+  }
+]

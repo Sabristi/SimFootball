@@ -1,0 +1,232 @@
+[
+  {
+    "id": "COMP-MAR-BP1",
+    "name": "Botola Pro 1 Inwi",
+    "shortName": "Botola Pro 1",
+    "acronym": "BP1",
+    "type": "League",
+    "scope": "Domestic",
+    "frequency": "Annual",
+    "countryId": "MAR",
+    "titleHolderId": "CLUB-MAR-RCA",
+    "trophyId": "TROPHY-COMP-MAR-BP1",
+    "occurrenceYears": [1, 2, 3, 4],
+    "monthStart": 9,
+    "monthEnd": 6,
+    "broadcasters": [
+      "Arryadia",
+      "2M"
+    ],
+    "level": 1,
+    "childCompetitionIds": ["COMP-MAR-BP2"],
+    "reputation": 10,
+    "confederationId": "CAF",
+    "displayRow": "showPositions",
+    "format": {
+      "teamsCount": 16,
+      "homeAndAway": true,
+      "pointsForWin": 3,
+      "pointsForDraw": 1,
+      "pointsForLoss": 0,
+      "tieBreakers": [
+        "H2H",
+        "GD",
+        "GF"
+      ]
+    },
+    "positionSlots": [
+      {
+        "rank": 1,
+        "type": "Continental",
+        "targetCompetitionId": "COMP-CAF-CL",
+        "label": "CAF Champions League",
+        "colorHex": "#00FF00"
+      },
+      {
+        "rank": 2,
+        "type": "Continental",
+        "targetCompetitionId": "COMP-CAF-CL",
+        "label": "CAF Champions League",
+        "colorHex": "#00FF00"
+      },
+      {
+        "rank": 3,
+        "type": "Continental",
+        "targetCompetitionId": "COMP-CAF-CC",
+        "label": "CAF Champions League",
+        "colorHex": "#00FF00"
+      },
+      {
+        "rank": 4,
+        "type": "Continental",
+        "targetCompetitionId": "COMP-CAF-CC",
+        "label": "CAF Confederation Cup",
+        "colorHex": "#15caff"
+      },
+      {
+        "rank": 5,
+        "type": "Continental",
+        "targetCompetitionId": "COMP-CAF-CC",
+        "label": "CAF Confederation Cup",
+        "colorHex": "#15caff"
+      },
+      {
+        "rank": 15,
+        "type": "Relegation",
+        "targetCompetitionId": "COMP-MAR-BP2",
+        "label": "Relégation en Botola 2",
+        "colorHex": "#FF0000"
+      },
+      {
+        "rank": 16,
+        "type": "Relegation",
+        "targetCompetitionId": "COMP-MAR-BP2",
+        "label": "Relégation en Botola 2",
+        "colorHex": "#FF0000"
+      }
+    ],
+    "history": [
+      {
+        "competitionId": "COMP-MAR-BP1",
+        "edition": "2024-2025",
+        "winnerId": "CLUB-MAR-RCA",
+        "runnerUpId": "CLUB-MAR-FAR",
+        "thirdPlaceId": "CLUB-MAR-RSB"
+      },
+      {
+        "competitionId": "COMP-MAR-BP1",
+        "edition": "2023-2024",
+        "winnerId": "CLUB-MAR-RCA",
+        "runnerUpId": "CLUB-MAR-FAR",
+        "thirdPlaceId": "CLUB-MAR-RSB"
+      }
+    ]
+  },
+  {
+    "id": "COMP-MAR-BP2",
+    "name": "Botola Pro 2 Inwi",
+    "shortName": "Botola Pro 2",
+    "acronym": "BP2",
+    "type": "League",
+    "scope": "Domestic",
+    "frequency": "Annual",
+    "countryId": "MAR",
+    "titleHolderId": "CLUB-MAR-CODM",
+    "trophyId": "TROPHY-COMP-MAR-BP2",
+    "occurrenceYears": [1, 2, 3, 4],
+    "monthStart": 9,
+    "monthEnd": 6,
+    "displayRow": "showPositions",
+    "broadcasters": [
+      "Arryadia"
+    ],
+    "level": 2,
+    "reputation": 6,
+    "confederationId": "CAF",
+    "format": {
+      "teamsCount": 16,
+      "homeAndAway": true,
+      "pointsForWin": 3,
+      "pointsForDraw": 1,
+      "pointsForLoss": 0,
+      "tieBreakers": [
+        "H2H",
+        "GD",
+        "GF"
+      ]
+    },
+    "positionSlots": [
+      {
+        "rank": 1,
+        "type": "Promotion",
+        "targetCompetitionId": "COMP-MAR-BP1",
+        "label": "Promotion en BP1",
+        "colorHex": "#00FF00"
+      },
+      {
+        "rank": 2,
+        "type": "Promotion",
+        "targetCompetitionId": "COMP-MAR-BP1",
+        "label": "Promotion en BP1",
+        "colorHex": "#00FF00"
+      }
+    ],
+    "history": [
+      {
+        "competitionId": "COMP-MAR-BP2",
+        "edition": "2024-2025",
+        "winnerId": "CLUB-MAR-CODM",
+        "runnerUpId": "CLUB-MAR-DHJ",
+        "thirdPlaceId": "CLUB-MAR-KACM"
+      },
+      {
+        "competitionId": "COMP-MAR-BP2",
+        "edition": "2023-2024",
+        "winnerId": "CLUB-MAR-CODM",
+        "runnerUpId": "CLUB-MAR-DHJ",
+        "thirdPlaceId": "CLUB-MAR-KACM"
+      }
+    ]
+  },
+  {
+    "id": "COMP-MAR-CT",
+    "name": "Coupe du Trône",
+    "shortName": "Coupe du Trône",
+    "acronym": "CT",
+    "type": "Cup",
+    "scope": "Domestic",
+    "frequency": "Annual",
+    "countryId": "MAR",
+    "displayRow": "showDivisions",
+    "titleHolderId": "CLUB-MAR-FAR",
+    "trophyId": "TROPHY-COMP-MAR-CT",
+    "occurrenceYears": [1, 2, 3, 4],
+    "monthStart": 11,
+    "monthEnd": 5,
+    "broadcasters": [
+      "Arryadia"
+    ],
+    "level": 1,
+    "reputation": 8,
+    "confederationId": "CAF",
+    "format": {
+      "teamsCount": 32,
+      "homeAndAway": false,
+      "pointsForWin": 0,
+      "pointsForDraw": 0,
+      "pointsForLoss": 0,
+      "tieBreakers": []
+    },
+    "positionSlots": [
+      {
+        "rank": 1,
+        "type": "Continental",
+        "targetCompetitionId": "COMP-CAF-CC",
+        "label": "CAF Confederation Cup",
+        "colorHex": "#FFFF00"
+      }
+    ],
+    "history": [
+      {
+        "competitionId": "COMP-MAR-CT",
+        "edition": "2023-2024",
+        "winnerId": "CLUB-MAR-FAR",
+        "runnerUpId": "CLUB-MAR-RCA",
+        "semiFinalistsIds": [
+          "CLUB-MAR-RSB",
+          "CLUB-MAR-MAS"
+        ]
+      },
+      {
+        "competitionId": "COMP-MAR-CT",
+        "edition": "2022-2023",
+        "winnerId": "CLUB-MAR-RSB",
+        "runnerUpId": "CLUB-MAR-WAC",
+        "semiFinalistsIds": [
+          "CLUB-MAR-FUS",
+          "CLUB-MAR-IRT"
+        ]
+      }
+    ]
+  }
+]

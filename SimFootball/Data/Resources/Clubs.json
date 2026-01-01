@@ -1,0 +1,1339 @@
+[
+  {
+    "acronym" : "RCA",
+    "cityId" : "CITY-MAR-CAS",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 5000000,
+      "transferBudget" : 1000000,
+      "wageBudget" : 50000
+    },
+    "foundedYear" : 1949,
+    "id" : "CLUB-MAR-RCA",
+    "identity" : {
+      "nickname" : "Les Aigles Verts",
+      "primaryColor" : "008000",
+      "secondaryColor" : "FFFFFF",
+      "style" : "Possession"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#008001",
+        "jerseyColors" : [
+          "#008000",
+          "#008001"
+        ],
+        "logoColor" : "#FFFFFF",
+        "pattern" : "Classic",
+        "shortsColor" : "#FFFFFF",
+        "socksColor" : "#008000",
+        "sponsorColor" : "#FFFFFF",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#FFFFFF",
+          "#FFFFFF"
+        ],
+        "logoColor" : "#008001",
+        "pattern" : "Classic",
+        "shortsColor" : "#008001",
+        "socksColor" : "#FFFFFF",
+        "sponsorColor" : "#008001",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Raja Club Athletic",
+    "reputation" : 9500,
+    "rivalClubIds" : [
+      "CLUB-MAR-WAC"
+    ],
+    "shortName" : "Raja CA",
+    "stadiumId" : "STAD-MAR-001"
+  },
+  {
+    "acronym" : "WAC",
+    "cityId" : "CITY-MAR-CAS",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 5000000,
+      "transferBudget" : 1000000,
+      "wageBudget" : 50000
+    },
+    "foundedYear" : 1937,
+    "id" : "CLUB-MAR-WAC",
+    "identity" : {
+      "nickname" : "Wydad Al Oumma",
+      "primaryColor" : "FF0000",
+      "secondaryColor" : "FFFFFF",
+      "style" : "Direct"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#FF0000",
+          "#FFFFFF",
+          "#C3B300"
+        ],
+        "logoColor" : "#FFD700",
+        "pattern" : "ThinStripes",
+        "shortsColor" : "#FF0000",
+        "socksColor" : "#FF0000",
+        "sponsorColor" : "#122B98",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#FF0000",
+        "jerseyColors" : [
+          "#FFFFFF",
+          "#FF0000"
+        ],
+        "logoColor" : "#FFD700",
+        "pattern" : "Classic",
+        "shortsColor" : "#FFFFFF",
+        "socksColor" : "#FFFFFF",
+        "sponsorColor" : "#122B98",
+        "type" : "Away"
+      },
+      {
+        "collarColor" : "#2A2A34",
+        "jerseyColors" : [
+          "#2A2A34",
+          "#2A2A34",
+          "#5E5200"
+        ],
+        "logoColor" : "#5B4E00",
+        "pattern" : "CenterStripe",
+        "shortsColor" : "#2A2A34",
+        "socksColor" : "#2B2A37",
+        "sponsorColor" : "#122B98",
+        "type" : "Third"
+      }
+    ],
+    "name" : "Wydad Athletic Club",
+    "reputation" : 7500,
+    "rivalClubIds" : [
+      "CLUB-MAR-RCA"
+    ],
+    "shortName" : "Wydad AC",
+    "stadiumId" : "STAD-MAR-001"
+  },
+  {
+    "acronym" : "FAR",
+    "cityId" : "CITY-MAR-RBA",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 4000000,
+      "transferBudget" : 800000,
+      "wageBudget" : 40000
+    },
+    "foundedYear" : 1958,
+    "id" : "CLUB-MAR-FAR",
+    "identity" : {
+      "nickname" : "Les Militaires",
+      "primaryColor" : "000000",
+      "secondaryColor" : "008000",
+      "style" : "Balanced"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#0F110E",
+          "#FF0000",
+          "#008001"
+        ],
+        "logoColor" : "#C3B300",
+        "pattern" : "Tricolor",
+        "shortsColor" : "#0F110E",
+        "socksColor" : "#0F110E",
+        "sponsorColor" : "#C3B300",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#FFFFFF",
+          "#0F110E",
+          "#0F110E"
+        ],
+        "logoColor" : "#C3B300",
+        "pattern" : "CenterStripe",
+        "shortsColor" : "#FFFFFF",
+        "socksColor" : "#FFFFFF",
+        "sponsorColor" : "#C3B300",
+        "type" : "Away"
+      }
+    ],
+    "name" : "AS FAR",
+    "reputation" : 7000,
+    "rivalClubIds" : [
+      "CLUB-MAR-FUS"
+    ],
+    "shortName" : "AS FAR",
+    "stadiumId" : "STAD-MAR-002"
+  },
+  {
+    "acronym" : "FUS",
+    "cityId" : "CITY-MAR-RBA",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-FUS",
+    "identity" : {
+      "nickname" : "FUS",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#FF0000",
+          "#FFFFFF"
+        ],
+        "logoColor" : "#FFFFFF",
+        "pattern" : "ShouldersShort",
+        "shortsColor" : "#FFFFFF",
+        "socksColor" : "#FF0000",
+        "sponsorColor" : "#FFFFFF",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#FFFFFF",
+          "#FF0000",
+          "#0F110E"
+        ],
+        "logoColor" : "#FFFFFF",
+        "pattern" : "HorizontalBicolor",
+        "shortsColor" : "#0F110E",
+        "socksColor" : "#FFFFFF",
+        "sponsorColor" : "#222222",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Fath Union Sport",
+    "reputation" : 6500,
+    "rivalClubIds" : [
+      "CLUB-MAR-FAR"
+    ],
+    "shortName" : "FUS Rabat",
+    "stadiumId" : "STAD-MAR-002"
+  },
+  {
+    "acronym" : "IRT",
+    "cityId" : "CITY-MAR-TNG",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 2000000,
+      "transferBudget" : 300000,
+      "wageBudget" : 25000
+    },
+    "foundedYear" : 1983,
+    "id" : "CLUB-MAR-IRT",
+    "identity" : {
+      "nickname" : "Faris Al Boughaz",
+      "primaryColor" : "0000FF",
+      "secondaryColor" : "FFFFFF",
+      "style" : "Balanced"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#1826B0",
+        "jerseyColors" : [
+          "#1826B0",
+          "#1826B0",
+          "#FFFFFF"
+        ],
+        "logoColor" : "#FFFFFF",
+        "pattern" : "CenterStripe",
+        "shortsColor" : "#1826B0",
+        "socksColor" : "#FFFFFF",
+        "sponsorColor" : "#FFFFFF",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#FFFFFF",
+          "#FFFFFF",
+          "#1826B0"
+        ],
+        "logoColor" : "#1826B0",
+        "pattern" : "CenterStripe",
+        "shortsColor" : "#FFFFFF",
+        "socksColor" : "#1826B0",
+        "sponsorColor" : "#C3B300",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Ittihad Riadi Tanger",
+    "reputation" : 6000,
+    "rivalClubIds" : [
+      "CLUB-MAR-MAT"
+    ],
+    "shortName" : "IR Tanger",
+    "stadiumId" : "STAD-MAR-003"
+  },
+  {
+    "acronym" : "MAS",
+    "cityId" : "CITY-MAR-FEZ",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 1500000,
+      "transferBudget" : 200000,
+      "wageBudget" : 20000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-MAS",
+    "identity" : {
+      "nickname" : "Les Tigres",
+      "primaryColor" : "FFFF00",
+      "secondaryColor" : "000000",
+      "style" : "Direct"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#FAE202",
+          "#F9E203",
+          "#000000"
+        ],
+        "logoColor" : "#0F110E",
+        "pattern" : "HeatcherModern",
+        "shortsColor" : "#F9E203",
+        "socksColor" : "#F9E203",
+        "sponsorColor" : "#1826B0",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#0F110E",
+          "#0F110E",
+          "#F9E203"
+        ],
+        "logoColor" : "#FFD700",
+        "pattern" : "HeatcherModern",
+        "shortsColor" : "#0F110E",
+        "socksColor" : "#0F110E",
+        "sponsorColor" : "#1826B0",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Maghreb Association Sportive de Fès",
+    "reputation" : 6200,
+    "rivalClubIds" : [
+
+    ],
+    "shortName" : "MAS Fès",
+    "stadiumId" : "STAD-MAR-006"
+  },
+  {
+    "acronym" : "RSB",
+    "cityId" : "CITY-MAR-OUD",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 3500000,
+      "transferBudget" : 600000,
+      "wageBudget" : 35000
+    },
+    "foundedYear" : 1938,
+    "id" : "CLUB-MAR-RSB",
+    "identity" : {
+      "nickname" : "Les Oranges",
+      "primaryColor" : "FF8000",
+      "secondaryColor" : "000000",
+      "style" : "Possession"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#0F110E",
+        "jerseyColors" : [
+          "#E16200",
+          "#E06202"
+        ],
+        "logoColor" : "#053100",
+        "pattern" : "Classic",
+        "shortsColor" : "#0F110E",
+        "socksColor" : "#E06202",
+        "sponsorColor" : "#FFFFFF",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#E06202",
+        "jerseyColors" : [
+          "#FFFFFF",
+          "#E06202",
+          "#E06202"
+        ],
+        "logoColor" : "#004900",
+        "pattern" : "Classic",
+        "shortsColor" : "#FFFFFF",
+        "socksColor" : "#FFFFFF",
+        "sponsorColor" : "#E06202",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Renaissance Sportive de Berkane",
+    "reputation" : 6800,
+    "rivalClubIds" : [
+      "CLUB-MAR-MCO"
+    ],
+    "shortName" : "RS Berkane"
+  },
+  {
+    "acronym" : "HUSA",
+    "cityId" : "CITY-MAR-AGA",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 1000000,
+      "transferBudget" : 150000,
+      "wageBudget" : 18000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-HUSA",
+    "identity" : {
+      "nickname" : "Ghazal Souss",
+      "primaryColor" : "FF0000",
+      "secondaryColor" : "FFFFFF",
+      "style" : "Counter-Attack"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#F10000",
+        "jerseyColors" : [
+          "#FFFFFF",
+          "#F10000",
+          "#F10000"
+        ],
+        "logoColor" : "#C3B300",
+        "pattern" : "VerticalStripes",
+        "shortsColor" : "#F10000",
+        "socksColor" : "#F10000",
+        "sponsorColor" : "#FFFFFF",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#0450D0",
+        "jerseyColors" : [
+          "#0450D0",
+          "#0450D0"
+        ],
+        "logoColor" : "#F10000",
+        "pattern" : "CenterStripe",
+        "shortsColor" : "#0450D0",
+        "socksColor" : "#FFFFFF",
+        "sponsorColor" : "#E06202",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Hassania Union Sport Agadir",
+    "reputation" : 5800,
+    "rivalClubIds" : [
+
+    ],
+    "shortName" : "Hassania Agadir",
+    "stadiumId" : "STAD-MAR-005"
+  },
+  {
+    "acronym" : "OCS",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 800000,
+      "transferBudget" : 100000,
+      "wageBudget" : 15000
+    },
+    "foundedYear" : 1921,
+    "id" : "CLUB-MAR-OCS",
+    "identity" : {
+      "nickname" : "Le Requin Bleu",
+      "primaryColor" : "0000FF",
+      "secondaryColor" : "FF0000",
+      "style" : "Physical"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#0D0E6F",
+          "#FF0000"
+        ],
+        "logoColor" : "#FFD700",
+        "pattern" : "Sash",
+        "shortsColor" : "#0D0E6F",
+        "socksColor" : "#0D0E6F",
+        "sponsorColor" : "#F9E203",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#FF0000",
+          "#0D0E6F"
+        ],
+        "logoColor" : "#FFD700",
+        "pattern" : "Sash",
+        "shortsColor" : "#FF0000",
+        "socksColor" : "#FF0000",
+        "sponsorColor" : "#F9E203",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Olympique Club de Safi",
+    "reputation" : 5500,
+    "rivalClubIds" : [
+
+    ],
+    "shortName" : "OC Safi"
+  },
+  {
+    "acronym" : "MCO",
+    "cityId" : "CITY-MAR-OUD",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 700000,
+      "transferBudget" : 80000,
+      "wageBudget" : 14000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-MCO",
+    "identity" : {
+      "nickname" : "Sindbad El Sharq",
+      "primaryColor" : "008000",
+      "secondaryColor" : "FFFFFF",
+      "style" : "Direct"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#008001",
+        "jerseyColors" : [
+          "#FFFFFF",
+          "#008001",
+          "#008001"
+        ],
+        "logoColor" : "#0F110E",
+        "pattern" : "VerticalStripes",
+        "shortsColor" : "#008001",
+        "socksColor" : "#008000",
+        "sponsorColor" : "#0F110E",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#0F110E",
+        "jerseyColors" : [
+          "#0F110E",
+          "#008001",
+          "#008001"
+        ],
+        "logoColor" : "#008001",
+        "pattern" : "Shoulders",
+        "shortsColor" : "#0F110E",
+        "socksColor" : "#0F110E",
+        "sponsorColor" : "#008001",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Mouloudia Club d'Oujda",
+    "reputation" : 5400,
+    "rivalClubIds" : [
+      "CLUB-MAR-RSB"
+    ],
+    "shortName" : "MC Oujda"
+  },
+  {
+    "acronym" : "MAT",
+    "cityId" : "CITY-MAR-TET",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 1200000,
+      "transferBudget" : 200000,
+      "wageBudget" : 20000
+    },
+    "foundedYear" : 1922,
+    "id" : "CLUB-MAR-MAT",
+    "identity" : {
+      "nickname" : "Los Matadores",
+      "primaryColor" : "FF0000",
+      "secondaryColor" : "FFFFFF",
+      "style" : "Technical"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#1826B0",
+        "jerseyColors" : [
+          "#FFFFFF",
+          "#FF0000",
+          "#1826B0"
+        ],
+        "logoColor" : "#FFD700",
+        "pattern" : "VerticalStripes",
+        "shortsColor" : "#1826B0",
+        "socksColor" : "#FF0000",
+        "sponsorColor" : "#1826B0",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#FF0000",
+        "jerseyColors" : [
+          "#07C3F0",
+          "#0D0E6F",
+          "#0D0E6F"
+        ],
+        "logoColor" : "#FF0000",
+        "pattern" : "Shoulders",
+        "shortsColor" : "#07C3F0",
+        "socksColor" : "#07C3F0",
+        "sponsorColor" : "#0D0E6F",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Moghreb Atlético Tétouan",
+    "reputation" : 5900,
+    "rivalClubIds" : [
+      "CLUB-MAR-IRT"
+    ],
+    "shortName" : "MA Tétouan"
+  },
+  {
+    "acronym" : "JSS",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 500000,
+      "transferBudget" : 50000,
+      "wageBudget" : 10000
+    },
+    "foundedYear" : 1984,
+    "id" : "CLUB-MAR-JSS",
+    "identity" : {
+      "nickname" : "JSS",
+      "primaryColor" : "0000FF",
+      "secondaryColor" : "FFFF00",
+      "style" : "Balanced"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#07C3F0",
+        "jerseyColors" : [
+          "#0450D0",
+          "#07C3F0"
+        ],
+        "logoColor" : "#F9E203",
+        "pattern" : "Classic",
+        "shortsColor" : "#0450D0",
+        "socksColor" : "#F9E203",
+        "sponsorColor" : "#07C3F0",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#0450D0",
+        "jerseyColors" : [
+          "#F9E203",
+          "#0450D0"
+        ],
+        "logoColor" : "#FFD700",
+        "pattern" : "Classic",
+        "shortsColor" : "#F9E203",
+        "socksColor" : "#0450D0",
+        "sponsorColor" : "#0450D0",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Jeunesse Sportive Soualem",
+    "reputation" : 4500,
+    "rivalClubIds" : [
+
+    ],
+    "shortName" : "JS Soualem"
+  },
+  {
+    "acronym" : "SCCM",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 600000,
+      "transferBudget" : 70000,
+      "wageBudget" : 12000
+    },
+    "foundedYear" : 1948,
+    "id" : "CLUB-MAR-SCCM",
+    "identity" : {
+      "nickname" : "Fédala",
+      "primaryColor" : "FF0000",
+      "secondaryColor" : "000000",
+      "style" : "Balanced"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#FF0000",
+          "#0F110E"
+        ],
+        "logoColor" : "#0F110E",
+        "pattern" : "ThinStripes",
+        "shortsColor" : "#0F110E",
+        "socksColor" : "#FF0000",
+        "sponsorColor" : "#FFFFFF",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#FF0000",
+        "jerseyColors" : [
+          "#FFFFFF",
+          "#0F110E"
+        ],
+        "logoColor" : "#FF0000",
+        "pattern" : "ThinStripes",
+        "shortsColor" : "#FFFFFF",
+        "socksColor" : "#FFFFFF",
+        "sponsorColor" : "#0F110E",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Chabab Mohammédia",
+    "reputation" : 5000,
+    "rivalClubIds" : [
+
+    ],
+    "shortName" : "SCC Mohammédia"
+  },
+  {
+    "acronym" : "UTS",
+    "cityId" : "CITY-MAR-RBA",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 900000,
+      "transferBudget" : 100000,
+      "wageBudget" : 15000
+    },
+    "foundedYear" : 1969,
+    "id" : "CLUB-MAR-UTS",
+    "identity" : {
+      "nickname" : "UTS",
+      "primaryColor" : "FFFF00",
+      "secondaryColor" : "008000",
+      "style" : "Defensive"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#C3B300",
+        "jerseyColors" : [
+          "#0F110E",
+          "#C3B300",
+          "#C3B300"
+        ],
+        "logoColor" : "#FFD700",
+        "pattern" : "CenterStripe",
+        "shortsColor" : "#C3B300",
+        "socksColor" : "#0F110E",
+        "sponsorColor" : "#C3B300",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#C3B300",
+        "jerseyColors" : [
+          "#FFFFFF",
+          "#C3B300",
+          "#C3B300"
+        ],
+        "logoColor" : "#C3B300",
+        "pattern" : "CenterStripe",
+        "shortsColor" : "#0F110E",
+        "socksColor" : "#FFFFFF",
+        "sponsorColor" : "#C3B300",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Union Touarga Sport",
+    "reputation" : 4800,
+    "rivalClubIds" : [
+
+    ],
+    "shortName" : "US Touarga"
+  },
+  {
+    "acronym" : "RCAZ",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 400000,
+      "transferBudget" : 40000,
+      "wageBudget" : 9000
+    },
+    "foundedYear" : 1977,
+    "id" : "CLUB-MAR-RCAZ",
+    "identity" : {
+      "nickname" : "RCAZ",
+      "primaryColor" : "0000FF",
+      "secondaryColor" : "FFFF00",
+      "style" : "Counter-Attack"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#07C3F0",
+          "#FFFFFF"
+        ],
+        "logoColor" : "#0D0E6F",
+        "pattern" : "Classic",
+        "shortsColor" : "#07C3F0",
+        "socksColor" : "#07C3F0",
+        "sponsorColor" : "#F10000",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#07C3F0",
+        "jerseyColors" : [
+          "#F9E203",
+          "#07C3F0"
+        ],
+        "logoColor" : "#0D0E6F",
+        "pattern" : "Classic",
+        "shortsColor" : "#F9E203",
+        "socksColor" : "#F9E203",
+        "sponsorColor" : "#F10000",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Renaissance Club Athletic Zemamra",
+    "reputation" : 4200,
+    "rivalClubIds" : [
+
+    ],
+    "shortName" : "RCA Zemamra"
+  },
+  {
+    "acronym" : "CAYB",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP1",
+    "finances" : {
+      "balance" : 450000,
+      "transferBudget" : 45000,
+      "wageBudget" : 9500
+    },
+    "foundedYear" : 1927,
+    "id" : "CLUB-MAR-CAYB",
+    "identity" : {
+      "nickname" : "CAYB",
+      "primaryColor" : "008000",
+      "secondaryColor" : "000000",
+      "style" : "Physical"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#0F110E",
+        "jerseyColors" : [
+          "#0F110E",
+          "#25B96E",
+          "#0F110E"
+        ],
+        "logoColor" : "#FFFFFF",
+        "pattern" : "VerticalStripes",
+        "shortsColor" : "#0F110E",
+        "socksColor" : "#25B96E",
+        "sponsorColor" : "#FFFFFF",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#FFFFFF",
+          "#25B96E",
+          "#25B96E"
+        ],
+        "logoColor" : "#25B96E",
+        "pattern" : "CenterStripe",
+        "shortsColor" : "#FFFFFF",
+        "socksColor" : "#FFFFFF",
+        "sponsorColor" : "#0F110E",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Club Athletic Youssoufia Berrechid",
+    "reputation" : 4300,
+    "rivalClubIds" : [
+
+    ],
+    "shortName" : "CAY Berrechid"
+  },
+  {
+    "acronym" : "PSG",
+    "cityId" : "CITY-FRA-001",
+    "countryId" : "FRA",
+    "leagueId": "COMP-FRA-L1",
+    "finances" : {
+      "balance" : 200000000,
+      "transferBudget" : 150000000,
+      "wageBudget" : 4000000
+    },
+    "foundedYear" : 1970,
+    "id" : "CLUB-FRA-PSG",
+    "identity" : {
+      "nickname" : "Les Parisiens",
+      "primaryColor" : "000040",
+      "secondaryColor" : "FF0000",
+      "style" : "Attacking"
+    },
+    "kits" : [
+      {
+        "collarColor" : "#FFFFFF",
+        "jerseyColors" : [
+          "#0D0E6F",
+          "#FF0000",
+          "#FFFFFF"
+        ],
+        "logoColor" : "#FFD700",
+        "pattern" : "HeatcherOutline",
+        "shortsColor" : "#0D0E6F",
+        "socksColor" : "#0D0E6F",
+        "sponsorColor" : "#FFFFFF",
+        "type" : "Home"
+      },
+      {
+        "collarColor" : "#0D0E6F",
+        "jerseyColors" : [
+          "#FFFFFF",
+          "#FF0000",
+          "#0D0E6F"
+        ],
+        "logoColor" : "#FFD700",
+        "pattern" : "HeatcherOutline",
+        "shortsColor" : "#FFFFFF",
+        "socksColor" : "#FFFFFF",
+        "sponsorColor" : "#0D0E6F",
+        "type" : "Away"
+      }
+    ],
+    "name" : "Paris Saint-Germain",
+    "reputation" : 9200,
+    "rivalClubIds" : [
+
+    ],
+    "shortName" : "PSG"
+  },
+  {
+    "acronym" : "KACM",
+    "cityId" : "CITY-MAR-RAK",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-KACM",
+    "identity" : {
+      "nickname" : "KACM",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Kawkab Athletic Club Marrakech",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "Kawkab Marrakech",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "CODM",
+    "cityId" : "CITY-MAR-MKN",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-CODM",
+    "identity" : {
+      "nickname" : "CODM",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Club Omnisports de Meknès",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "COD Meknès",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "OCK",
+    "cityId" : "CITY-MAR-KBG",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-OCK",
+    "identity" : {
+      "nickname" : "OCK",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Olympique Club Khouribga",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "Olympique Khouribga",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "OD",
+    "cityId" : "CITY-MAR-DCH",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-OD",
+    "identity" : {
+      "nickname" : "OD",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Olympique Dcheira",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "Olympique Dcheira",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "SM",
+    "cityId" : "CITY-MAR-RBA",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-SM",
+    "identity" : {
+      "nickname" : "SM",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Stade Marocain",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "Stade Marocain",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "JSM",
+    "cityId" : "CITY-MAR-LAY",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-JSM",
+    "identity" : {
+      "nickname" : "JSM",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Jeunesse Sportive El Massira",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "JS El Massira",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "KAC",
+    "cityId" : "CITY-MAR-KNT",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-KAC",
+    "identity" : {
+      "nickname" : "KAC",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Kenitra Athletic Club",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "Kenitra AC",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "WAF",
+    "cityId" : "CITY-MAR-FES",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-WAF",
+    "identity" : {
+      "nickname" : "OD",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Wydad Athletic de Fès",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "Wydad Fès",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "RBM",
+    "cityId" : "CITY-MAR-BNM",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-RBM",
+    "identity" : {
+      "nickname" : "OD",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Raja Beni Mellal",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "Raja Beni Mellal",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "RAC",
+    "cityId" : "CITY-MAR-CAS",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-RAC",
+    "identity" : {
+      "nickname" : "RAC",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Racing Athletic Club Casablanca",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "RAC Casablanca",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "TAS",
+    "cityId" : "CITY-MAR-CAS",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-TAS",
+    "identity" : {
+      "nickname" : "TAS",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Tihad Athletic Sport Casablanca",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "TAS Casablanca",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "WST",
+    "cityId" : "CITY-MAR-TEM",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-WST",
+    "identity" : {
+      "nickname" : "WST",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Wydad Sportive Temara",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "Wydad Temara",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "CRA",
+    "cityId" : "CITY-MAR-HOC",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-CRA",
+    "identity" : {
+      "nickname" : "CRA",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Chabab Rif Al Hoceima",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "CR Al Hoceima",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "RSS",
+    "cityId" : "CITY-MAR-STT",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-RSS",
+    "identity" : {
+      "nickname" : "RSS",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Renaissance Sportive Settat",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "RS Settat",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "ASS",
+    "cityId" : "CITY-MAR-SAL",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-ASS",
+    "identity" : {
+      "nickname" : "ASS",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Association Sportive Salé",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "AS Salé",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  },
+  {
+    "acronym" : "DHJ",
+    "cityId" : "CITY-MAR-ELJ",
+    "countryId" : "MAR",
+    "leagueId": "COMP-MAR-BP2",
+    "finances" : {
+      "balance" : 3000000,
+      "transferBudget" : 500000,
+      "wageBudget" : 30000
+    },
+    "foundedYear" : 1946,
+    "id" : "CLUB-MAR-DHJ",
+    "identity" : {
+      "nickname" : "DHJ",
+      "primaryColor" : "FFFFFF",
+      "secondaryColor" : "FF0000",
+      "style" : "Technical"
+    },
+    "name" : "Difaâ Hassani El Jadida",
+    "reputation" : 6500,
+    "rivalClubIds" : [],
+    "shortName" : "Difaâ El Jadida",
+    "stadiumId" : "STAD-MAR-002",
+    "kits" : []
+  }
+]

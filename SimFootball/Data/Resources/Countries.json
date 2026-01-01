@@ -1,0 +1,200 @@
+[
+  {
+    "id": "FRA",
+    "fifaCode": "FRA",
+    "name": "France",
+    "flagEmoji": "🇫🇷",
+    "region": null,
+    "continent": "Europe",
+    "confederationId": "UEFA",
+    "type": "Standard",
+    "isPlayable": false
+  },
+  {
+    "id": "ENG",
+    "fifaCode": "ENG",
+    "name": "England",
+    "flagEmoji": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "region": null,
+    "continent": "Europe",
+    "confederationId": "UEFA",
+    "type": "Standard",
+    "isPlayable": false
+  },
+  {
+    "id": "ESP",
+    "fifaCode": "ESP",
+    "name": "Spain",
+    "flagEmoji": "🇪🇸",
+    "region": null,
+    "continent": "Europe",
+    "confederationId": "UEFA",
+    "type": "Standard",
+    "isPlayable": false
+  },
+  {
+    "id": "DEU",
+    "fifaCode": "GER",
+    "name": "Germany",
+    "flagEmoji": "🇩🇪",
+    "region": null,
+    "continent": "Europe",
+    "confederationId": "UEFA",
+    "type": "Standard",
+    "isPlayable": false
+  },
+  {
+    "id": "ITA",
+    "fifaCode": "ITA",
+    "name": "Italy",
+    "flagEmoji": "🇮🇹",
+    "region": null,
+    "continent": "Europe",
+    "confederationId": "UEFA",
+    "type": "Standard",
+    "isPlayable": false
+  },
+  {
+    "id": "BRA",
+    "fifaCode": "BRA",
+    "name": "Brazil",
+    "flagEmoji": "🇧🇷",
+    "region": null,
+    "continent": "South America",
+    "confederationId": "CONMEBOL",
+    "type": "Standard",
+    "isPlayable": false
+  },
+  {
+    "id": "ARG",
+    "fifaCode": "ARG",
+    "name": "Argentina",
+    "flagEmoji": "🇦🇷",
+    "region": null,
+    "continent": "South America",
+    "confederationId": "CONMEBOL",
+    "type": "Standard",
+    "isPlayable": false
+  },
+  {
+    "id": "MAR",
+    "fifaCode": "MAR",
+    "name": "Morocco",
+    "flagEmoji": "🇲🇦",
+    "region": null,
+    "continent": "Africa",
+    "confederationId": "CAF",
+    "type": "Standard",
+    "isPlayable": true
+  },
+  {
+    "id": "SEN",
+    "fifaCode": "SEN",
+    "name": "Senegal",
+    "flagEmoji": "🇸🇳",
+    "region": null,
+    "continent": "Africa",
+    "confederationId": "CAF",
+    "type": "Standard",
+    "isPlayable": false
+  },
+  {
+    "id": "EGY",
+    "fifaCode": "EGY",
+    "name": "Egypt",
+    "flagEmoji": "🇪🇬",
+    "region": null,
+    "continent": "Africa",
+    "confederationId": "CAF",
+    "type": "Standard",
+    "isPlayable": true
+  },
+  {
+    "id": "NGA",
+    "fifaCode": "NGA",
+    "name": "Nigeria",
+    "flagEmoji": "🇳🇬",
+    "region": null,
+    "continent": "Africa",
+    "confederationId": "CAF",
+    "type": "Standard",
+    "isPlayable": false
+  },
+  {
+    "id": "CMR",
+    "fifaCode": "CMR",
+    "name": "Cameroon",
+    "flagEmoji": "🇨🇲",
+    "region": null,
+    "continent": "Africa",
+    "confederationId": "CAF",
+    "type": "Standard",
+    "isPlayable": false
+  },
+  {
+    "id": "CIV",
+    "fifaCode": "CIV",
+    "name": "Ivory Coast",
+    "flagEmoji": "🇨🇮",
+    "region": null,
+    "continent": "Africa",
+    "confederationId": "CAF",
+    "type": "Standard",
+    "isPlayable": false
+  },
+  {
+    "id": "GHA",
+    "fifaCode": "GHA",
+    "name": "Ghana",
+    "flagEmoji": "🇬🇭",
+    "region": null,
+    "continent": "Africa",
+    "confederationId": "CAF",
+    "type": "Standard",
+    "isPlayable": false
+  },
+  {
+    "id": "ALG",
+    "fifaCode": "ALG",
+    "name": "Algeria",
+    "flagEmoji": "🇩🇿",
+    "region": null,
+    "continent": "Africa",
+    "confederationId": "CAF",
+    "type": "Standard",
+    "isPlayable": true
+  },
+  {
+    "id": "TUN",
+    "fifaCode": "TUN",
+    "name": "Tunisia",
+    "flagEmoji": "🇹🇳",
+    "region": null,
+    "continent": "Africa",
+    "confederationId": "CAF",
+    "type": "Standard",
+    "isPlayable": true
+  },
+  {
+    "id": "MLI",
+    "fifaCode": "MLI",
+    "name": "Mali",
+    "flagEmoji": "🇲🇱",
+    "region": null,
+    "continent": "Africa",
+    "confederationId": "CAF",
+    "type": "Standard",
+    "isPlayable": false
+  },
+  {
+    "id": "RSA",
+    "fifaCode": "RSA",
+    "name": "South Africa",
+    "flagEmoji": "🇿🇦",
+    "region": null,
+    "continent": "Africa",
+    "confederationId": "CAF",
+    "type": "Standard",
+    "isPlayable": true
+  }
+]

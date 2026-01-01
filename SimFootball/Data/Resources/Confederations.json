@@ -1,0 +1,26 @@
+[
+  {
+    "id": "UEFA",
+    "name": "Union of European Football Associations",
+    "shortName": "UEFA",
+    "scope": "Continental",
+    "continent": "Europe",
+    "logoPath": "logo_uefa"
+  },
+  {
+    "id": "CAF",
+    "name": "Confédération Africaine de Football",
+    "shortName": "CAF",
+    "scope": "Continental",
+    "continent": "Africa",
+    "logoPath": "logo_caf"
+  },
+  {
+    "id": "CONMEBOL",
+    "name": "Confederación Sudamericana de Fútbol",
+    "shortName": "CONMEBOL",
+    "scope": "Continental",
+    "continent": "South America",
+    "logoPath": "logo_conmebol"
+  }
+]

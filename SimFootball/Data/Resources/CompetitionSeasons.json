@@ -1,0 +1,69 @@
+[
+  {
+    "id": "CS_BOTOLA_PRO_1_2025_26",
+    "seasonId": "S_2025_26",
+    "competitionId": "COMP-MAR-BP1",
+    "currentStageId": "STAGE_MAR_BP1_REG",
+    "yearLabel": "2025/26",
+    "startDate": "2025-08-20T00:00:00Z",
+    "endDate": "2026-05-30T00:00:00Z",
+    "status": "Not Scheduled",
+    "teamIds": [
+      "CLUB-MAR-RCA",
+      "CLUB-MAR-WAC",
+      "CLUB-MAR-FAR",
+      "CLUB-MAR-FUS",
+      "CLUB-MAR-IRT",
+      "CLUB-MAR-MAS",
+      "CLUB-MAR-RSB",
+      "CLUB-MAR-HUSA",
+      "CLUB-MAR-OCS",
+      "CLUB-MAR-MCO",
+      "CLUB-MAR-MAT",
+      "CLUB-MAR-JSS",
+      "CLUB-MAR-SCCM",
+      "CLUB-MAR-UTS",
+      "CLUB-MAR-RCAZ",
+      "CLUB-MAR-CAYB"
+    ]
+  },
+  {
+    "id": "CS_BOTOLA_PRO_2_2025_26",
+    "seasonId": "S_2025_26",
+    "competitionId": "COMP-MAR-BP2",
+    "currentStageId": "STAGE_MAR_BP2_REG",
+    "yearLabel": "2025/26",
+    "startDate": "2025-08-20T00:00:00Z",
+    "endDate": "2026-05-30T00:00:00Z",
+    "status": "Not Scheduled",
+    "teamIds": [
+      "CLUB-MAR-KACM",
+      "CLUB-MAR-DHJ",
+      "CLUB-MAR-OD",
+      "CLUB-MAR-ASS",
+      "CLUB-MAR-RBM",
+      "CLUB-MAR-WAF",
+      "CLUB-MAR-JSM",
+      "CLUB-MAR-CRA",
+      "CLUB-MAR-WST",
+      "CLUB-MAR-KAC",
+      "CLUB-MAR-RSS",
+      "CLUB-MAR-TAS",
+      "CLUB-MAR-RAC",
+      "CLUB-MAR-SM",
+      "CLUB-MAR-OCK",
+      "CLUB-MAR-CODM"
+    ]
+  },
+  {
+      "id": "CS_COUPE_DU_TRONE_2025_26",
+      "competitionId": "COMP-MAR-CT",
+      "seasonId": "S_2025_26",
+      "status": "Not Scheduled",
+      "currentStageId": "STAGE_MAR_CT_R32",
+      "startDate": "2025-09-01T00:00:00Z",
+      "endDate": "2026-05-30T00:00:00Z",
+      "yearLabel": "2025/26",
+      "teamIds": []
+  }
+]

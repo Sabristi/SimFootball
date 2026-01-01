@@ -1,0 +1,147 @@
+[
+  {
+    "id": "EVT-DRAW-BP1-2025",
+    "seasonId": "S_2025_26",
+    "calendarDayId": "DAY_2025_08_15",
+    "eventType": "Draw",
+    "refType": "CompetitionSeason",
+    "refId": "COMP-MAR-BP1",
+    "label": "Tirage au sort - Botola Pro 1",
+    "description": "La fédération royale marocaine de football vous invite à assister au tirage au sort du calendrier pour la saison 2025/2026. Votre présence est requise.",
+    "date": "2025-08-15T19:00:00Z",
+    "standardDate": "2025-08-15T19:00:00Z",
+    "colorHex": "#FFD700",
+    "action": {
+      "label": "Assister au tirage",
+      "type": "Navigation",
+      "executionMode": "Automatic",
+      "targetScreen": "CompetitionDraw",
+      "isCompleted": false
+    }
+  },
+  {
+    "id": "EVT-DRAW-BP2-2025",
+    "seasonId": "S_2025_26",
+    "calendarDayId": "DAY_2025_08_15",
+    "eventType": "Draw",
+    "refType": "CompetitionSeason",
+    "refId": "COMP-MAR-BP2",
+    "label": "Tirage au sort - Botola Pro 2",
+    "description": "La fédération royale marocaine de football vous invite à assister au tirage au sort du calendrier pour la saison 2025/2026. Votre présence est requise.",
+    "date": "2025-08-15T19:00:00Z",
+    "standardDate": "2025-08-15T19:00:00Z",
+    "colorHex": "#FFD700",
+    "action": {
+      "label": "Assister au tirage",
+      "type": "Navigation",
+      "executionMode": "Automatic",
+      "targetScreen": "CompetitionDraw",
+      "isCompleted": false
+    }
+  },
+  {
+      "id": "EVT-DRAW-CT-R32-2025",
+      "seasonId": "S_2025_26",
+      "calendarDayId": "DAY_2025_07_16",
+      "eventType": "Draw",
+      "refType": "CompetitionSeason",
+      "refId": "COMP-MAR-CT",
+      "label": "Tirage au sort - 1/16ème de Finale",
+      "description": "Tirage au sort des 16èmes de finale de la Coupe du Trône. Les clubs de Botola Pro 1 et 2 entrent en lice.",
+      "date": "2025-07-16T19:00:00Z",
+      "standardDate": "2025-07-16T19:00:00Z",
+      "colorHex": "#E63946",
+      "action": {
+        "label": "Effectuer le tirage",
+        "type": "Navigation",
+        "executionMode": "Automatic",
+        "targetScreen": "CompetitionDraw",
+        "isCompleted": false,
+        "contextData": { "roundId": "R32" }
+      }
+    },
+  {
+      "id": "EVT-DRAW-CT-R16-2025",
+      "seasonId": "S_2025_26",
+      "calendarDayId": "DAY_2025_07_19",
+      "eventType": "Draw",
+      "refType": "CompetitionSeason",
+      "refId": "COMP-MAR-CT",
+      "label": "Tirage au sort - 1/8ème de Finale",
+      "description": "Tirage au sort des 8èmes de finale de la Coupe du Trône.",
+      "date": "2025-07-19T19:00:00Z",
+      "standardDate": "2025-07-19T19:00:00Z",
+      "colorHex": "#E63946",
+      "executionMode": "Automatic",
+      "action": {
+        "label": "Effectuer le tirage",
+        "type": "Navigation",
+        "targetScreen": "CompetitionDraw",
+        "isCompleted": false,
+        "contextData": { "roundId": "R16" }
+      }
+    },
+  {
+      "id": "EVT-DRAW-CT-QF-2025",
+      "seasonId": "S_2025_26",
+      "calendarDayId": "DAY_2025_07_22",
+      "eventType": "Draw",
+      "refType": "CompetitionSeason",
+      "refId": "COMP-MAR-CT",
+      "label": "Tirage au sort - 1/4 de Finales",
+      "description": "Tirage au sort des 1/4 de finales de la Coupe du Trône.",
+      "date": "2025-07-22T19:00:00Z",
+      "standardDate": "2025-07-22T19:00:00Z",
+      "colorHex": "#E63946",
+      "executionMode": "Automatic",
+      "action": {
+        "label": "Effectuer le tirage",
+        "type": "Navigation",
+        "targetScreen": "CompetitionDraw",
+        "isCompleted": false,
+        "contextData": { "roundId": "QF" }
+      }
+    },
+  {
+      "id": "EVT-DRAW-CT-SF-2025",
+      "seasonId": "S_2025_26",
+      "calendarDayId": "DAY_2025_07_25",
+      "eventType": "Draw",
+      "refType": "CompetitionSeason",
+      "refId": "COMP-MAR-CT",
+      "label": "Tirage au sort - 1/2 Finales",
+      "description": "Tirage au sort des 1/2 finales de la Coupe du Trône.",
+      "date": "2025-07-25T19:00:00Z",
+      "standardDate": "2025-07-25T19:00:00Z",
+      "colorHex": "#E63946",
+      "executionMode": "Automatic",
+      "action": {
+        "label": "Effectuer le tirage",
+        "type": "Navigation",
+        "targetScreen": "CompetitionDraw",
+        "isCompleted": false,
+        "contextData": { "roundId": "SF" }
+      }
+    },
+  {
+      "id": "EVT-DRAW-CT-FINAL-2025",
+      "seasonId": "S_2025_26",
+      "calendarDayId": "DAY_2025_07_28",
+      "eventType": "Draw",
+      "refType": "CompetitionSeason",
+      "refId": "COMP-MAR-CT",
+      "label": "Tirage au sort - Finale",
+      "description": "Tirage au sort de la finale de la Coupe du Trône.",
+      "date": "2025-07-28T19:00:00Z",
+      "standardDate": "2025-07-28T19:00:00Z",
+      "colorHex": "#E63946",
+      "executionMode": "Automatic",
+      "action": {
+        "label": "Effectuer le tirage",
+        "type": "Navigation",
+        "targetScreen": "CompetitionDraw",
+        "isCompleted": false,
+        "contextData": { "roundId": "FINAL" }
+      }
+    }
+]

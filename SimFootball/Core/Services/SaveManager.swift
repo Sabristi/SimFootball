@@ -34,6 +34,7 @@ class SaveManager {
             stateToSave.savedMatchDays = GameDatabase.shared.matchDays
             stateToSave.savedLeagueTables = GameDatabase.shared.leagueTables
             stateToSave.savedCalendarEvents = GameDatabase.shared.calendarEvents
+            stateToSave.savedTeamHistories = GameDatabase.shared.teamHistories
             
             // ✅ CORRECTION : On sauvegarde aussi l'historique !
             if let currentSave = GameDatabase.shared.currentSave {
@@ -74,15 +75,18 @@ class SaveManager {
             GameDatabase.shared.matchDays = loadedState.savedMatchDays
             GameDatabase.shared.leagueTables = loadedState.savedLeagueTables
             GameDatabase.shared.calendarEvents = loadedState.savedCalendarEvents
+            GameDatabase.shared.teamHistories = loadedState.savedTeamHistories
             
             // ✅ CORRECTION MAJEURE : On reconstruit 'currentSave' pour que l'UI fonctionne
             var restoredSave = SaveData()
             //restoredSave.id = loadedState.id // Si GameState a un ID
+            restoredSave.selectedCountries = loadedState.selectedCountries
             restoredSave.savedMatches = loadedState.savedMatches
             restoredSave.savedMatchDays = loadedState.savedMatchDays
             restoredSave.savedLeagueTables = loadedState.savedLeagueTables
             restoredSave.savedCalendarEvents = loadedState.savedCalendarEvents
             restoredSave.savedCompetitionSeasons = loadedState.savedCompetitionSeasons
+            restoredSave.savedTeamHistories = loadedState.savedTeamHistories
             
             // On restaure l'historique
             restoredSave.competitionHistory = loadedState.competitionHistory

@@ -115,6 +115,15 @@ class SeasonTransitionManager {
                 nextSeasonLabel: nextSeasonLabel
             )
             
+            // On supprime les matchs joués pour alléger la sauvegarde, car le palmarès est archivé.
+            // On garde les MatchDays pour avoir une trace des dates dans le calendrier si besoin.
+            if competition.type == .cup  && competition.scope == .domestic {
+                            service.cleanUpSeasonMatches(
+                                competitionId: competition.id,
+                                seasonId: oldSeasonId
+                            )
+            }
+            
         }
         
         for competition in futurCompetitions {
@@ -142,9 +151,15 @@ class SeasonTransitionManager {
                 nextSeasonId: nextSeasonId
             )
             
-            // H. Création de l'événement de tirage au sort pour la nouvelle saison
-            createDrawEvent(for: competition, nextYear: nextYear, nextSeasonId: nextSeasonId, cycleYear: nextCycleYear)
         }
+        
+        // ✅ 6. RECYCLAGE GLOBAL DES ÉVÉNEMENTS (CALENDRIER)
+        // On le fait une seule fois pour tout le jeu, indépendamment des compétitions
+        service.recycleSeasonCalendarEvents(
+                    oldSeasonId: oldSeasonId,
+                    nextSeasonId: nextSeasonId,
+                    nextCycleYear: nextCycleYear
+        )
         
         // 6. SAUVEGARDE FINALE DE TOUTES LES DONNÉES
         db.saveAllData()
@@ -152,67 +167,4 @@ class SeasonTransitionManager {
         print("✅ [MANAGER] TRANSITION VERS \(nextYear) TERMINÉE AVEC SUCCÈS.\n")
     }
     
-    // MARK: - CRÉATION ÉVÉNEMENT TIRAGE
-    
-    private func createDrawEvent(for competition: Competition, nextYear: Int, nextSeasonId: String, cycleYear: Int) {
-        
-        // Date par défaut du tirage (Mi-Juillet)
-        var comps = DateComponents()
-        comps.year = nextYear
-        comps.month = 7
-        comps.day = 15
-        comps.hour = 12 // Midi
-        let drawDate = Calendar.current.date(from: comps) ?? Date()
-        
-        var context: [String: String]? = nil
-        var label = "Tirage : \(competition.shortName)"
-        var executionMode: EventExecutionMode = .manual // Par défaut manuel pour le suspense
-        
-        // --- LOGIQUE SPÉCIFIQUE ---
-        
-        // 1. Coupes Nationales (Coupe du Trône) -> Tirage 1/16èmes
-        if competition.type == .cup {
-            context = ["roundId": "R32"] // On commence par les 1/16èmes
-            executionMode = .automatic   // Automatique pour fluidifier le début de saison
-        }
-        
-        // 2. Championnats (Botola) -> Tirage Calendrier
-        if competition.type == .league {
-            // Pas de context particulier, c'est le tirage du calendrier complet
-            executionMode = .automatic
-        }
-        
-        // 3. International (Exemple futur)
-        /*
-        if competition.frequency == .quadrennial {
-            label = "Tirage : \(competition.name) (Phase Finale)"
-            executionMode = .manual // On veut voir le tirage de la Coupe du Monde !
-        }
-        */
-        
-        // Création de l'objet Event
-        let drawEvent = SeasonCalendarEvent(
-            id: UUID().uuidString,
-            seasonId: nextSeasonId,
-            calendarDayId: drawDate.formatted(.iso8601),
-            eventType: .draw,
-            refType: .competitionSeason,
-            refId: competition.id,
-            label: label,
-            description: "Tirage au sort officiel de la \(competition.name) pour la saison \(nextYear)/\(nextYear+1).",
-            date: drawDate,
-            colorHex: "#FFD700", // Or
-            action: EventAction(
-                label: "Effectuer le tirage",
-                type: .navigation,
-                targetScreen: "CompetitionDraw",
-                isCompleted: false,
-                contextData: context,
-                executionMode: executionMode
-            )
-        )
-        
-        db.calendarEvents.append(drawEvent)
-        print("   📅 Événement de tirage créé : \(label) (\(executionMode.rawValue))")
-    }
 }

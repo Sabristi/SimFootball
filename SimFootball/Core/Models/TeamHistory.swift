@@ -34,7 +34,7 @@ struct CompetitionPerformance: Codable, Identifiable, Hashable {
 
 // MARK: - 2. Entrée Historique Saison (L'objet principal)
 // Représente toute la saison d'une équipe
-struct TeamSeasonHistory: Codable, Identifiable {
+struct TeamSeasonHistory: Codable, Identifiable, Hashable {
     let id: String              // Ex: "H_RCA_2025_26"
     let teamId: String          // ID du Club ou du Pays
     let seasonId: String        // "S_2025_26"

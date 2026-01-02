@@ -125,7 +125,7 @@ struct MainGameView: View {
             return "LIVE RESULTS"
             
         case .primaryCountry:
-            return gameState.selectedCountries.first?.continent.uppercased()
+            return gameState.selectedCountries.first?.continent.rawValue.uppercased()
             
         default:
             return nil

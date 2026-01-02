@@ -346,4 +346,80 @@ class SeasonTransitionService {
         formatter.numberStyle = .ordinal
         return formatter.string(from: NSNumber(value: n)) ?? "\(n)"
     }
+    
+    // MARK: - 6. NETTOYAGE (OPTIMISATION)
+        
+    /// Supprime tous les objets Match d'une compétition pour une saison donnée.
+    /// Conserve les MatchDays pour l'historique du calendrier.
+    func cleanUpSeasonMatches(competitionId: String, seasonId: String) {
+            // 1. On récupère les IDs des journées (MatchDays) concernées
+            // On utilise un Set pour que la recherche soit instantanée (O(1))
+            let targetMatchDayIds = Set(db.matchDays
+                .filter { $0.competitionId == competitionId && $0.seasonId == seasonId }
+                .map { $0.id })
+            
+            guard !targetMatchDayIds.isEmpty else { return }
+            
+            let countBefore = db.matches.count
+            
+            // 2. On supprime les matchs qui appartiennent à ces journées
+            db.matches.removeAll { match in
+                return targetMatchDayIds.contains(match.matchDayId)
+            }
+            
+            let deletedCount = countBefore - db.matches.count
+            
+            if deletedCount > 0 {
+                print(" 🗑️ [CLEANUP] \(deletedCount) matchs de Coupe supprimés pour \(competitionId) (\(seasonId)).")
+            }
+    }
+    
+    // MARK: - 7. RECYCLAGE GLOBAL DES ÉVÉNEMENTS
+        
+    func recycleSeasonCalendarEvents(oldSeasonId: String, nextSeasonId: String, nextCycleYear: Int) {
+            print("🗓️ Analyse des événements à recycler pour le cycle \(nextCycleYear)...")
+            var updatedCount = 0
+            
+            // On parcourt TOUS les événements de la base
+            for i in db.calendarEvents.indices {
+                let event = db.calendarEvents[i]
+                    
+                    var shouldRecycle = false
+                    
+                    // 2. LOGIQUE DE FILTRAGE
+                    if event.frequency == .annual {
+                        // Cas 1 : C'est annuel -> On garde
+                        shouldRecycle = true
+                    } else if let years = event.occurrenceYears, years.contains(nextCycleYear) {
+                        // Cas 2 : Ce n'est pas annuel, MAIS c'est prévu pour cette année du cycle -> On garde
+                        shouldRecycle = true
+                    }
+                    
+                    // 3. APPLICATION (+1 an, même jour semaine)
+                    if shouldRecycle {
+                        // On utilise la "standardDate" comme ancre pour garder la cohérence du calendrier (ex: toujours le 2ème vendredi d'Août)
+                        let anchorDate = event.standardDate ?? event.date ?? Date()
+                        let currentEventDate = event.date ?? Date()
+                        
+                        // Calcul savant pour garder le jour de la semaine (Mardi -> Mardi)
+                        let newDate = calculateDateForNextYear(currentDate: currentEventDate, standardDate: anchorDate)
+                        
+                        // Mise à jour IN-PLACE (On déplace l'événement vers la nouvelle saison)
+                        db.calendarEvents[i].seasonId = nextSeasonId
+                        db.calendarEvents[i].date = newDate
+                        
+                        // Mise à jour de l'ID technique du jour (Pour l'affichage calendrier)
+                        db.calendarEvents[i].calendarDayId = newDate.formatted(.iso8601) // Ou votre format "DAY_yyyy_MM_dd"
+                        
+                        // Reset de l'action (Le bouton redevient cliquable)
+                        if db.calendarEvents[i].action != nil {
+                            db.calendarEvents[i].action?.isCompleted = false
+                        }
+                        
+                        updatedCount += 1
+                    }
+        }
+            
+        print("✅ \(updatedCount) événements ont été reportés vers la saison \(nextSeasonId).")
+    }
 }

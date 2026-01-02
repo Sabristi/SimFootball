@@ -9,6 +9,14 @@ import Foundation
 
 // MARK: - 1. ENUMS & TYPES
 
+// Fréquence de l'événement
+enum EventFrequency: String, Codable {
+    case annual = "Annual"          // Tous les ans (ex: Botola)
+    case biennial = "Biennial"      // Tous les 2 ans (ex: CAN)
+    case quadrennial = "Quadrennial" // Tous les 4 ans (ex: World Cup)
+    case once = "Once"              // Une seule fois (ex: Interview spécifique)
+}
+
 // Types d'actions possibles pour un événement
 enum EventActionType: String, Codable {
     case none = "None"
@@ -49,14 +57,14 @@ struct EventAction: Codable, Hashable {
     let targetScreen: String?   // "DrawScreen" (Identifiant de l'écran cible)
     var isCompleted: Bool       // Si l'action a été faite
     let contextData: [String: String]?
-    var executionMode: EventExecutionMode? // Optionnel (défaut = .manual)
+    let executionMode: EventExecutionMode? // Optionnel (défaut = .manual)
     
     init(label: String,
-             type: EventActionType,
-             targetScreen: String? = nil,
-             isCompleted: Bool = false,
-             contextData: [String : String]? = nil,
-             executionMode: EventExecutionMode = .manual) {
+         type: EventActionType,
+         targetScreen: String? = nil,
+         isCompleted: Bool = false,
+         contextData: [String : String]? = nil,
+         executionMode: EventExecutionMode = .manual) {
             
             self.label = label
             self.type = type
@@ -70,8 +78,8 @@ struct EventAction: Codable, Hashable {
 // L'Événement principal (Email / Agenda)
 struct SeasonCalendarEvent: Identifiable, Codable, Hashable {
     let id: String
-    let seasonId: String        // "2025-2026"
-    let calendarDayId: String   // Lien vers le jour du calendrier
+    var seasonId: String        // "2025-2026"
+    var calendarDayId: String   // Lien vers le jour du calendrier
     
     let eventType: SeasonEventType
     let refType: EventReferenceType
@@ -79,13 +87,20 @@ struct SeasonCalendarEvent: Identifiable, Codable, Hashable {
     
     let label: String
     let description: String?    // Corps du message
-    let date: Date?             // Heure précise
+    var date: Date?             // Heure précise
     let colorHex: String?       // Couleur d'affichage
     
     var standardDate: Date?
     
     // NOUVEAU : Gestion de l'action
     var action: EventAction?
+    
+    // ✅ NOUVEAU : Gestion de la récurrence
+    var frequency: EventFrequency
+    
+    // ✅ NOUVEAU : Années d'occurrence (pour les cycles > 1 an)
+    // Ex: [2, 4] pour un événement biennal les années paires du cycle
+    var occurrenceYears: [Int]?
     
     // Initialiseur complet
     init(id: String = UUID().uuidString,
@@ -99,7 +114,9 @@ struct SeasonCalendarEvent: Identifiable, Codable, Hashable {
          date: Date? = nil,
          standardDate: Date? = nil,
          colorHex: String? = nil,
-         action: EventAction? = nil) {
+         action: EventAction? = nil,
+         frequency: EventFrequency = .annual, // Par défaut : Annuel
+         occurrenceYears: [Int]? = nil) {     // Par défaut : Nil (donc tous les ans si annual)
         
         self.id = id
         self.seasonId = seasonId
@@ -110,9 +127,12 @@ struct SeasonCalendarEvent: Identifiable, Codable, Hashable {
         self.label = label
         self.description = description
         self.date = date
+        self.standardDate = standardDate
         self.colorHex = colorHex
         self.action = action
-        self.standardDate = standardDate
+        
+        self.frequency = frequency
+        self.occurrenceYears = occurrenceYears
     }
 }
 

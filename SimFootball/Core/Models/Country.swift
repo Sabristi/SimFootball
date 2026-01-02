@@ -7,22 +7,28 @@
 
 import Foundation
 
+enum CountryType: String, Codable, Hashable {
+    case standard = "Standard"
+    case historical = "Historical" // Exemple si tu en as d'autres
+}
+
+// MARK: - Struct
 struct Country: Identifiable, Codable, Hashable {
     let id: String
     let name: String
     let fifaCode: String
     let flagEmoji: String
     
-    // 🛡️ ON FORCE LE STRING pour éviter les erreurs de décodage Enum (majuscules/minuscules)
-    let continent: String
-    let type: String?
+    // ✅ Retour aux Enums fortement typés
+    let continent: Continent
+    let type: CountryType?
     
     let region: String?
     let confederationId: String?
     let isPlayable: Bool
     
     // Initialiseur standard
-    init(id: String, name: String, fifaCode: String? = nil, flagEmoji: String, continent: String, confederationId: String? = nil, region: String? = nil, type: String? = "Standard", isPlayable: Bool = true) {
+    init(id: String, name: String, fifaCode: String? = nil, flagEmoji: String, continent: Continent, confederationId: String? = nil, region: String? = nil, type: CountryType? = .standard, isPlayable: Bool = true) {
         self.id = id.uppercased()
         self.name = name
         self.fifaCode = (fifaCode ?? id).uppercased()
@@ -34,24 +40,4 @@ struct Country: Identifiable, Codable, Hashable {
         self.isPlayable = isPlayable
     }
     
-    // 🛡️ INIT DE DÉCODAGE BLINDÉ
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        id = try container.decode(String.self, forKey: .id)
-        name = try container.decode(String.self, forKey: .name)
-        
-        // Gestion des champs optionnels ou avec fallback
-        fifaCode = (try? container.decode(String.self, forKey: .fifaCode)) ?? id
-        flagEmoji = (try? container.decode(String.self, forKey: .flagEmoji)) ?? "🏳️"
-        
-        // Ici, on accepte n'importe quelle String pour le continent
-        continent = (try? container.decode(String.self, forKey: .continent)) ?? "Unknown"
-        
-        region = try? container.decode(String.self, forKey: .region)
-        confederationId = try? container.decode(String.self, forKey: .confederationId)
-        type = try? container.decode(String.self, forKey: .type)
-        
-        isPlayable = (try? container.decode(Bool.self, forKey: .isPlayable)) ?? false
-    }
 }

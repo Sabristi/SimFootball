@@ -59,11 +59,12 @@ struct DataTable<T: Identifiable>: View {
     }
     
     var totalPages: Int {
-        return Int(ceil(Double(data.count) / Double(itemsPerPage)))
+        let count = Double(data.count)
+        guard count > 0 else { return 1 }
+        return Int(ceil(count / Double(itemsPerPage)))
     }
     
     // MARK: - BODY PRINCIPAL
-    // ✅ Correction : Découpage du body pour soulager le compilateur
     var body: some View {
         VStack(spacing: 0) {
             headerView
@@ -72,7 +73,7 @@ struct DataTable<T: Identifiable>: View {
         }
     }
     
-    // MARK: - SOUS-VUES (Pour aider le compilateur)
+    // MARK: - SOUS-VUES
     
     // 1. L'En-tête (Header)
     private var headerView: some View {
@@ -228,8 +229,9 @@ struct CountryEditorList: View {
                     Text(country.name).fontWeight(.semibold).foregroundColor(.white).lineLimit(1)
                 },
                 
-                DataColumn(title: "Continent", width: 110, sort: { $0.continent < $1.continent }) { country in
-                    Text(country.continent).font(.caption).foregroundColor(.gray)
+                DataColumn(title: "Continent", width: 110, sort: { $0.continent.rawValue < $1.continent.rawValue }) { country in
+                    // CORRECTION ICI : Utilisation de rawValue
+                    Text(country.continent.rawValue).font(.caption).foregroundColor(.gray)
                 },
                 
                 DataColumn(title: "Confed", width: 70, sort: { ($0.confederationId ?? "") < ($1.confederationId ?? "") }) { country in
@@ -337,7 +339,7 @@ struct StadiumEditorList: View {
     }
 }
 
-// MARK: - 5. IMPLEMENTATION CLUBS (RETRAVAILLÉE)
+// MARK: - 5. IMPLEMENTATION CLUBS (CORRIGÉE : DECOMPOSITION)
 
 struct ClubIDWrapper: Identifiable {
     let id: String
@@ -349,93 +351,28 @@ struct ClubEditorList: View {
     
     var body: some View {
         Table(database.clubs) {
-            
-            // Colonne 1 : Club (Logo + ShortName)
             TableColumn("Club") { club in
-                HStack(spacing: 12) {
-                    // Logo Logic (Fallback dynamique si pas d'image)
-                    if let logoImage = PlatformImage(named: "Logo_\(club.id)") {
-                        Image(platformImage: logoImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 32, height: 32)
-                    } else {
-                        // Placeholder Logo : Cercle Couleur Principale + Initiale
-                        ZStack {
-                            Circle()
-                                .fill(Color(hex: club.identity.primaryColor))
-                                .strokeBorder(Color(hex: club.identity.secondaryColor), lineWidth: 2)
-                            
-                            // --- CORRECTION ICI ---
-                            // On utilise l'acronyme s'il existe (??), SINON on prend les 3 premières lettres du nom
-                            Text(club.acronym ?? String(club.name.prefix(3)).uppercased())
-                                .font(.system(size: 8, weight: .bold)) // Taille réduite pour entrer dans le rond
-                                .foregroundColor(Color(hex: club.identity.secondaryColor))
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5) // Rétrécit le texte si trop long
-                        }
-                        .frame(width: 32, height: 32)
-                    }
-                    
-                    Text(club.shortName)
-                        .font(.headline)
-                        .fontWeight(.medium)
-                }
+                clubIdentityView(club)
             }
             .width(min: 200)
             
-            // Colonne 2 : Ville
             TableColumn("Ville") { club in
-                // On vérifie si cityId existe ET si on trouve la ville
-                if let cityId = club.cityId, let city = database.getCity(byId: cityId) {
-                    Text(city.name).foregroundColor(.secondary)
-                } else {
-                    Text("-").foregroundColor(.gray.opacity(0.5))
-                }
+                clubCityView(club)
             }
             .width(100)
             
-            // Colonne 3 : Pays
             TableColumn("Pays") { club in
-                // CORRECTION : On cherche directement le pays via l'ID du club
-                if let country = database.getCountry(byId: club.countryId) {
-                    HStack(spacing: 6) {
-                        Text(country.flagEmoji)
-                            .font(.title3)
-                        Text(country.id)
-                            .font(.caption)
-                            .fontWeight(.bold)
-                            .foregroundColor(.gray)
-                    }
-                } else {
-                    // Si l'ID du pays ne correspond à rien dans la base de données
-                    Text(club.countryId)
-                        .font(.caption)
-                        .foregroundColor(.red)
-                }
+                clubCountryView(club)
             }
             .width(70)
             
-            // Colonne 4 : Kits
             TableColumn("Kits") { club in
-                HStack(spacing: 10) {
-                    MiniKitView(kit: club.getKit(.home), fallbackIcon: "house.fill")
-                    MiniKitView(kit: club.getKit(.away), fallbackIcon: "airplane")
-                    MiniKitView(kit: club.getKit(.third), fallbackIcon: "tshirt")
-                }
+                clubKitsView(club)
             }
             .width(130)
             
-            // Colonne 5 : Action
             TableColumn("Action") { club in
-                Button(action: {
-                    selectedClubWrapper = ClubIDWrapper(id: club.id)
-                }) {
-                    Label("Éditer", systemImage: "pencil")
-                        .labelStyle(.iconOnly)
-                        .foregroundColor(.blue)
-                }
-                .buttonStyle(.plain)
+                clubActionView(club)
             }
             .width(50)
         }
@@ -444,6 +381,86 @@ struct ClubEditorList: View {
                 ClubKitsEditorView(club: $database.clubs[index])
             }
         }
+    }
+    
+    // MARK: - Sous-Vues pour soulager le compilateur
+    
+    @ViewBuilder
+    private func clubIdentityView(_ club: Club) -> some View {
+        HStack(spacing: 12) {
+            // Logo Logic
+            if let logoImage = PlatformImage(named: "Logo_\(club.id)") {
+                Image(platformImage: logoImage)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32, height: 32)
+            } else {
+                ZStack {
+                    Circle()
+                        .fill(Color(hex: club.identity.primaryColor))
+                        .strokeBorder(Color(hex: club.identity.secondaryColor), lineWidth: 2)
+                    
+                    Text(club.acronym ?? String(club.name.prefix(3)).uppercased())
+                        .font(.system(size: 8, weight: .bold))
+                        .foregroundColor(Color(hex: club.identity.secondaryColor))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                }
+                .frame(width: 32, height: 32)
+            }
+            
+            Text(club.shortName)
+                .font(.headline)
+                .fontWeight(.medium)
+        }
+    }
+    
+    @ViewBuilder
+    private func clubCityView(_ club: Club) -> some View {
+        if let cityId = club.cityId, let city = database.getCity(byId: cityId) {
+            Text(city.name).foregroundColor(.secondary)
+        } else {
+            Text("-").foregroundColor(.gray.opacity(0.5))
+        }
+    }
+    
+    @ViewBuilder
+    private func clubCountryView(_ club: Club) -> some View {
+        if let country = database.getCountry(byId: club.countryId) {
+            HStack(spacing: 6) {
+                Text(country.flagEmoji)
+                    .font(.title3)
+                Text(country.id)
+                    .font(.caption)
+                    .fontWeight(.bold)
+                    .foregroundColor(.gray)
+            }
+        } else {
+            Text(club.countryId)
+                .font(.caption)
+                .foregroundColor(.red)
+        }
+    }
+    
+    @ViewBuilder
+    private func clubKitsView(_ club: Club) -> some View {
+        HStack(spacing: 10) {
+            MiniKitView(kit: club.getKit(.home), fallbackIcon: "house.fill")
+            MiniKitView(kit: club.getKit(.away), fallbackIcon: "airplane")
+            MiniKitView(kit: club.getKit(.third), fallbackIcon: "tshirt")
+        }
+    }
+    
+    @ViewBuilder
+    private func clubActionView(_ club: Club) -> some View {
+        Button(action: {
+            selectedClubWrapper = ClubIDWrapper(id: club.id)
+        }) {
+            Label("Éditer", systemImage: "pencil")
+                .labelStyle(.iconOnly)
+                .foregroundColor(.blue)
+        }
+        .buttonStyle(.plain)
     }
 }
 

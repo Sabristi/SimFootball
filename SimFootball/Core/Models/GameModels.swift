@@ -2,8 +2,6 @@ import Foundation
 
 // MARK: - 1. NAVIGATION DU JEU
 /// Les différents onglets accessibles dans le menu latéral du jeu
-// Dans SimFootball/Core/Models/GameModels.swift
-
 enum GameTab: String, CaseIterable {
     case inbox = "Inbox"
     case home = "Home"
@@ -109,6 +107,9 @@ struct GameState: Codable, Identifiable, Hashable {
     var savedCalendarEvents: [SeasonCalendarEvent] = []
     var competitionHistory: [CompetitionHistoryEntry] = []
     
+    // ✅ AJOUT : Historique des équipes (Palmarès individuel)
+    var savedTeamHistories: [TeamSeasonHistory] = []
+    
     /// Crée une nouvelle partie vierge
     static func createNew(slotId: Int, mode: GameMode, countries: [Country]) -> GameState {
         // Date de départ fixe pour la saison 2025/2026
@@ -132,7 +133,9 @@ struct GameState: Codable, Identifiable, Hashable {
             savedMatches: [],
             savedMatchDays: [],
             savedLeagueTables: [],
-            savedCalendarEvents: []
+            savedCalendarEvents: [],
+            competitionHistory: [],
+            savedTeamHistories: [] // ✅ Initialisation vide
         )
     }
 }

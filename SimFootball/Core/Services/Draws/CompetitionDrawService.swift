@@ -17,10 +17,6 @@ class CompetitionDrawService {
     // MARK: - 1. POINT D'ENTRÉE PRINCIPAL (AUTOMATISATION)
     
     /// Lance le tirage approprié selon le type de compétition (Ligue ou Coupe)
-    /// - Parameters:
-    ///   - competitionId: ID de la compétition
-    ///   - seasonId: ID de la saison
-    ///   - roundId: (Optionnel) ID du tour spécifique pour les Coupes (ex: "R32", "QF")
     func performDrawForCurrentStage(competitionId: String, seasonId: String, roundId: String? = nil) {
         print("🎲 [DrawService] Lancement du tirage pour \(competitionId) (Saison \(seasonId))...")
         
@@ -59,8 +55,7 @@ class CompetitionDrawService {
             return false
         }
         
-        // 2. Récupérer les MatchDays (déjà mis à jour par la transition)
-        // On s'assure qu'ils sont triés (J1, J2, J3...) pour aligner avec l'algo de Berger
+        // 2. Récupérer les MatchDays
         let matchDays = db.matchDays
             .filter { $0.competitionId == competitionId && $0.seasonId == seasonId }
             .sorted { $0.index < $1.index }
@@ -79,46 +74,33 @@ class CompetitionDrawService {
         let tableId = "\(shortCode)-REG"
         
         // 4. BOUCLE DE RECYCLAGE
-        // On parcourt les journées générées par l'algo
         for (dayIndex, dayFixtures) in fixtures.enumerated() {
-            // On vérifie qu'on ne dépasse pas le nombre de journées physiques en base
             if dayIndex < matchDays.count {
                 let currentDay = matchDays[dayIndex]
                 
-                // On récupère les indices des matchs existants pour cette journée dans la DB
-                // On les trie par leur ID (ex: "BP1-J01-1", "BP1-J01-2") pour garantir l'ordre
                 let matchIndices = db.matches.indices
                     .filter { db.matches[$0].matchDayId == currentDay.id }
                     .sorted { db.matches[$0].id < db.matches[$1].id }
                 
-                // On remplit les slots existants avec les nouvelles paires
                 for (matchIndex, pair) in dayFixtures.enumerated() {
                     if matchIndex < matchIndices.count {
-                        let dbIndex = matchIndices[matchIndex] // L'index réel dans le grand tableau db.matches
+                        let dbIndex = matchIndices[matchIndex]
                         let (homeId, awayId) = pair
                         
-                        // --- MISE À JOUR (RECYCLAGE) ---
-                        // On modifie directement la structure existante
                         var match = db.matches[dbIndex]
                         
                         match.homeTeamId = homeId
                         match.awayTeamId = awayId
-                        
-                        // On met aussi à jour les alias pour garder la cohérence
-                        // (Même si on utilise les IDs maintenant, c'est plus propre)
-                        
                         match.stadiumId = db.getClub(byId: homeId)?.stadiumId
-                        match.kickoffTime = currentDay.date // On applique la nouvelle date de la journée
+                        match.kickoffTime = currentDay.date
                         match.status = .scheduled
-                        //match.tableId = tableId
                         
-                        // Reset des scores (au cas où on recycle des vieux matchs joués)
+                        // Reset des scores
                         match.homeTeamGoals = nil
                         match.awayTeamGoals = nil
                         match.homePenalties = nil
                         match.awayPenalties = nil
                         
-                        // On réinjecte la structure modifiée
                         db.matches[dbIndex] = match
                         updatedCount += 1
                     }
@@ -128,7 +110,7 @@ class CompetitionDrawService {
         
         print("   ♻️ \(updatedCount) matchs recyclés et mis à jour.")
         
-        // 5. INITIALISER LE CLASSEMENT (Toujours nécessaire car on le vide avant)
+        // 5. INITIALISER LE CLASSEMENT
         initializeLeagueTable(
             competitionId: competitionId,
             seasonId: seasonId,
@@ -144,7 +126,7 @@ class CompetitionDrawService {
         return true
     }
     
-    // MARK: - 3. LOGIQUE TIRAGE COUPE (NOUVEAU)
+    // MARK: - 3. LOGIQUE TIRAGE COUPE (CORRIGÉE & AUTOMATISÉE)
     
     func performDrawForCup(competitionId: String, seasonId: String, roundId: String) -> Bool {
         print("🏆 [DrawService] Tirage Coupe : \(roundId)")
@@ -158,55 +140,98 @@ class CompetitionDrawService {
         }
         
         // 2. Effectuer le tirage (Mélange aléatoire)
-        // On mélange les IDs
         let shuffledTeams = qualifiedTeamIds.shuffled()
         var matches: [Match] = []
         
-        // 3. Créer les matchs
-        // On itère par paire (0-1, 2-3, etc.)
+        // 3. Identification du Type de Tour (Aller/Retour ou Match Sec ?)
+        // QF et SF sont Aller/Retour. R32, R16, FINAL sont Match Sec.
+        let isTwoLegged = (roundId.contains("QF") || roundId.contains("SF")) && !roundId.contains("FINAL")
+        
+        // 4. Créer les matchs
         for i in stride(from: 0, to: shuffledTeams.count - 1, by: 2) {
-            let homeId = shuffledTeams[i]
-            let awayId = shuffledTeams[i+1]
+            // Sécurité pour éviter index out of bounds si nombre impair (ne devrait pas arriver)
+            if i+1 >= shuffledTeams.count { break }
             
-            // Récupérer les infos des clubs pour les alias/stades
-            let homeClub = db.getClub(byId: homeId)
-            let awayClub = db.getClub(byId: awayId)
+            let teamA = shuffledTeams[i]
+            let teamB = shuffledTeams[i+1]
             
-            // Déterminer l'ID du MatchDay (ex: "MD-CT-R32")
-            let matchDayId = getMatchDayIdForRound(roundId)
+            let clubA = db.getClub(byId: teamA)
+            let clubB = db.getClub(byId: teamB)
             
-            // Créer l'objet Match
-            // Note: Pour les coupes, type = .knockoutSingle (Match sec) ou .firstLeg (Aller/Retour)
-            // Ici on simplifie en match sec (.knockoutSingle) sur terrain du premier tiré
-            
-            // Gérer la date précise (pour l'instant on prend celle du MatchDay ou nil)
-            let kickOff = db.matchDays.first(where: { $0.id == matchDayId })?.date
-            
-            let newMatch = Match(
-                id: UUID().uuidString, // ID unique pour le match
-                competitionId: competitionId,
-                matchDayId: matchDayId,
-                homeTeamAlias: homeClub?.shortName ?? "Team A",
-                awayTeamAlias: awayClub?.shortName ?? "Team B",
-                homeTeamId: homeId,
-                awayTeamId: awayId,
-                stadiumId: homeClub?.stadiumId, // Joue chez le premier tiré
-                kickoffTime: kickOff,
-                status: .scheduled,
-                type: .knockoutSingle // Match à élimination directe
-            )
-            
-            matches.append(newMatch)
+            if isTwoLegged {
+                // --- CAS ALLER / RETOUR (QF, SF) ---
+                
+                // MATCH 1 : ALLER (Chez A)
+                let matchDay1Id = getMatchDayIdForRound(roundId, leg: 1)
+                let date1 = db.matchDays.first(where: { $0.id == matchDay1Id })?.date
+                let id1 = UUID().uuidString
+                
+                let match1 = Match(
+                    id: id1,
+                    competitionId: competitionId,
+                    matchDayId: matchDay1Id,
+                    homeTeamAlias: clubA?.shortName ?? "Team A",
+                    awayTeamAlias: clubB?.shortName ?? "Team B",
+                    homeTeamId: teamA,
+                    awayTeamId: teamB,
+                    stadiumId: clubA?.stadiumId,
+                    kickoffTime: date1,
+                    status: .scheduled,
+                    type: .firstLeg // 🚨 Type Aller
+                )
+                
+                // MATCH 2 : RETOUR (Chez B)
+                let matchDay2Id = getMatchDayIdForRound(roundId, leg: 2)
+                let date2 = db.matchDays.first(where: { $0.id == matchDay2Id })?.date
+                
+                let match2 = Match(
+                    id: UUID().uuidString,
+                    competitionId: competitionId,
+                    matchDayId: matchDay2Id,
+                    homeTeamAlias: clubB?.shortName ?? "Team B",
+                    awayTeamAlias: clubA?.shortName ?? "Team A",
+                    homeTeamId: teamB,
+                    awayTeamId: teamA,
+                    stadiumId: clubB?.stadiumId,
+                    kickoffTime: date2,
+                    status: .scheduled,
+                    type: .secondLeg, // 🚨 Type Retour
+                    firstLegMatchId: id1 // 🔗 LIEN CRUCIAL POUR L'AGRÉGAT
+                )
+                
+                matches.append(match1)
+                matches.append(match2)
+                
+            } else {
+                // --- CAS MATCH SEC (R32, R16, FINAL) ---
+                
+                let matchDayId = getMatchDayIdForRound(roundId, leg: nil)
+                let date = db.matchDays.first(where: { $0.id == matchDayId })?.date
+                
+                let match = Match(
+                    id: UUID().uuidString,
+                    competitionId: competitionId,
+                    matchDayId: matchDayId,
+                    homeTeamAlias: clubA?.shortName ?? "Team A",
+                    awayTeamAlias: clubB?.shortName ?? "Team B",
+                    homeTeamId: teamA,
+                    awayTeamId: teamB,
+                    stadiumId: clubA?.stadiumId, // Joue chez le premier tiré (pour la finale, on pourrait forcer un stade neutre)
+                    kickoffTime: date,
+                    status: .scheduled,
+                    type: .knockoutSingle // 🚨 Type Match Sec
+                )
+                
+                matches.append(match)
+            }
         }
         
-        // 4. Sauvegarder
+        // 5. Sauvegarder
         saveCupFixtures(matches: matches, roundId: roundId)
         
-        // ✅ 5. METTRE À JOUR LE STATUT DE LA SAISON (C'était l'oubli !)
+        // 6. METTRE À JOUR LE STATUT
         if let compSeason = db.getCompetitionSeason(competitionId: competitionId, seasonId: seasonId) {
-                updateStatusToPlanned(compSeason: compSeason)
-        } else {
-                print("⚠️ Impossible de mettre à jour le statut : CompetitionSeason introuvable.")
+            updateStatusToPlanned(compSeason: compSeason)
         }
         
         return true
@@ -220,7 +245,6 @@ class CompetitionDrawService {
             updated.status = .planned
             db.competitionSeasons[index] = updated
             
-            // Sauvegardes
             db.saveCompetitionSeasons()
             db.saveMatches()
             print("   ✅ Statut mis à jour : PLANNED")
@@ -261,7 +285,7 @@ class CompetitionDrawService {
         return rounds + returnRounds
     }
     
-    // MARK: - INITIALISATION DU CLASSEMENT (Table)
+    // MARK: - INITIALISATION DU CLASSEMENT
     
     private func initializeLeagueTable(competitionId: String, seasonId: String, teamIds: [String], tableId: String, compSeasonId: String, stageId: String) {
         
@@ -272,14 +296,11 @@ class CompetitionDrawService {
             let slotNumber = index + 1
             let targetAlias = "T\(slotNumber)_\(suffix)"
             
-            // 3. On cherche l'entrée existante
             if let dbIndex = db.leagueTables.firstIndex(where: {
                 $0.competitionId == competitionId &&
                 $0.stageId == stageId &&
                 $0.teamAlias == targetAlias
             }) {
-                
-                // 4. MISE À JOUR (Recyclage)
                 var entry = db.leagueTables[dbIndex]
                 
                 entry.seasonId = seasonId
@@ -300,9 +321,7 @@ class CompetitionDrawService {
                 
                 db.leagueTables[dbIndex] = entry
                 updatedCount += 1
-                
             } else {
-                // Debug plus précis pour comprendre ce qui manque
                 print("⚠️ Slot introuvable : Alias='\(targetAlias)', Stage='\(stageId)', Comp='\(competitionId)'")
             }
         }
@@ -320,22 +339,17 @@ class CompetitionDrawService {
         
         // --- CAS 1 : PREMIER TOUR (1/16èmes) ---
         if roundId.contains("R32") {
-            // Tout le monde (BP1 + BP2)
             let bp1Teams = db.clubs.filter { $0.leagueId == "COMP-MAR-BP1" }.map { $0.id }
             let bp2Teams = db.clubs.filter { $0.leagueId == "COMP-MAR-BP2" }.map { $0.id }
             return bp1Teams + bp2Teams
         }
         
         // --- CAS 2 : TOURS SUIVANTS (R16, QF, SF, Finale) ---
-        
-        // 1. Déterminer l'ID du MatchDay décisif du tour précédent
         guard let prevId = getPreviousRoundMatchDayId(currentRoundId: roundId) else {
             print("❌ Impossible de déterminer le tour précédent pour \(roundId)")
             return []
         }
         
-        // 2. Récupérer les matchs joués du tour précédent
-        // On utilise `contains` pour matcher "MD-CT-R32" ou "MD-CT-QF-2"
         let previousMatches = db.matches.filter {
             $0.matchDayId == prevId && $0.status == .played
         }
@@ -345,19 +359,14 @@ class CompetitionDrawService {
             return []
         }
         
-        // 3. Extraire les vainqueurs
         var winners: [String] = []
-        
         for match in previousMatches {
-            // Pour chaque match terminé du tour précédent, on détermine qui passe
             if let winnerId = getWinnerId(for: match) {
                 winners.append(winnerId)
             }
         }
         
-        // Nettoyage des doublons (sécurité)
         let uniqueWinners = Array(Set(winners))
-        
         print("✅ \(uniqueWinners.count) vainqueurs qualifiés depuis \(prevId).")
         return uniqueWinners
     }
@@ -370,59 +379,47 @@ class CompetitionDrawService {
               let aId = match.awayTeamId else { return nil }
         
         // 1. Tirs au but (Priorité absolue)
-        // S'il y a eu des TAB, c'est que l'égalité (simple ou cumulée) a été brisée ici.
         if let hPen = match.homePenalties, let aPen = match.awayPenalties {
             return hPen > aPen ? hId : aId
         }
         
         // 2. Cas Match Retour (Aggrégat)
         if match.type == .secondLeg, let firstLegId = match.firstLegMatchId {
-            // On doit récupérer le match aller pour faire l'addition
             if let firstLeg = db.matches.first(where: { $0.id == firstLegId }) {
                 
-                // Calcul des buts pour l'équipe qui est À DOMICILE AUJOURD'HUI (hId)
+                // Buts pour l'équipe à domicile CE SOIR (hId)
                 var aggHome = hGoals
                 if firstLeg.homeTeamId == hId { aggHome += (firstLeg.homeTeamGoals ?? 0) }
                 else { aggHome += (firstLeg.awayTeamGoals ?? 0) }
                 
-                // Calcul des buts pour l'équipe qui est À L'EXTÉRIEUR AUJOURD'HUI (aId)
+                // Buts pour l'équipe à l'extérieur CE SOIR (aId)
                 var aggAway = aGoals
                 if firstLeg.homeTeamId == aId { aggAway += (firstLeg.homeTeamGoals ?? 0) }
                 else { aggAway += (firstLeg.awayTeamGoals ?? 0) }
                 
-                // Verdict Aggrégat
                 if aggHome > aggAway { return hId }
                 if aggAway > aggHome { return aId }
                 
-                // Si égalité parfaite ici et pas de TAB, c'est un bug de simulation,
-                // mais on ne peut rien faire d'autre.
-                return nil
+                return nil // Si égalité parfaite sans TAB
             }
         }
         
-        // 3. Cas Match Simple (Standard ou Match Aller gagné sans suite)
-        // Note : Pour un match "Aller" (.firstLeg), ce code renvoie le gagnant du match,
-        // mais normalement on ne devrait appeler cette fonction que sur des matchs décisifs (Retour ou Sec).
+        // 3. Cas Match Simple
         if hGoals > aGoals { return hId }
         if aGoals > hGoals { return aId }
         
         return nil
     }
     
-    // --- HELPER : Chaînage des Tours (Cible les matchs décisifs) ---
+    // --- HELPER : Chaînage des Tours ---
     private func getPreviousRoundMatchDayId(currentRoundId: String) -> String? {
-        // R16 : Les qualifiés viennent du R32 (Match unique)
         if currentRoundId.contains("R16") { return "MD-CT-R32" }
-        
-        // QF : Les qualifiés viennent du R16 (Match unique)
         if currentRoundId.contains("QF")  { return "MD-CT-R16" }
         
-        // SF : Les qualifiés viennent des QF (Matchs Aller-Retour)
-        // ⚠️ On doit cibler le match RETOUR (QF-2) car c'est lui qui scelle le sort
+        // ⚠️ Pour les Demies, on regarde le retour des Quarts
         if currentRoundId.contains("SF")  { return "MD-CT-QF-2" }
         
-        // Finale : Les qualifiés viennent des SF (Matchs Aller-Retour)
-        // ⚠️ On doit cibler le match RETOUR (SF-2)
+        // ⚠️ Pour la Finale, on regarde le retour des Demies
         if currentRoundId.contains("FINAL") { return "MD-CT-SF-2" }
         
         return nil
@@ -430,23 +427,38 @@ class CompetitionDrawService {
     
     /// Sauvegarde finale des matchs générés par le tirage
     func saveCupFixtures(matches: [Match], roundId: String) {
-        // 1. On supprime les éventuels brouillons pour ce round
-        let matchDayPrefix = getMatchDayIdForRound(roundId) // ex: "MD-CT-R32"
-        db.matches.removeAll { $0.matchDayId.starts(with: matchDayPrefix) }
+        // 1. Suppression ciblée des brouillons
+        // Pour QF et SF, il faut supprimer QF-1 et QF-2
+        if roundId.contains("QF") {
+            db.matches.removeAll { $0.matchDayId.contains("MD-CT-QF") }
+        } else if roundId.contains("SF") {
+            db.matches.removeAll { $0.matchDayId.contains("MD-CT-SF") }
+        } else {
+            // Pour R32, R16, FINAL (Match unique)
+            let matchDayPrefix = getMatchDayIdForRound(roundId, leg: nil)
+            db.matches.removeAll { $0.matchDayId == matchDayPrefix }
+        }
         
-        // 2. On ajoute les nouveaux matchs
+        // 2. Ajout des nouveaux
         db.matches.append(contentsOf: matches)
         db.saveMatches()
         print("✅ \(matches.count) matchs de Coupe sauvegardés pour le tour \(roundId).")
     }
     
-    private func getMatchDayIdForRound(_ roundId: String) -> String {
-        // Mapping simple basé sur vos IDs JSON
+    private func getMatchDayIdForRound(_ roundId: String, leg: Int?) -> String {
         if roundId.contains("R32") { return "MD-CT-R32" }
         if roundId.contains("R16") { return "MD-CT-R16" }
-        if roundId.contains("QF") { return "MD-CT-QF" } // Attention, il y a QF-1 et QF-2
-        if roundId.contains("SF") { return "MD-CT-SF" }
+        
+        if roundId.contains("QF") {
+            return (leg == 1) ? "MD-CT-QF-1" : "MD-CT-QF-2"
+        }
+        
+        if roundId.contains("SF") {
+            return (leg == 1) ? "MD-CT-SF-1" : "MD-CT-SF-2"
+        }
+        
         if roundId.contains("FINAL") { return "MD-CT-FINAL" }
+        
         return "MD-CT-GEN"
     }
 }

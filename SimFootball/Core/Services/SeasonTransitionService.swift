@@ -192,29 +192,108 @@ class SeasonTransitionService {
     }
     
     // MARK: - 2. HISTORIQUE COMPÉTITION (Sauvegarde)
-    
+        
     func archiveCompetitionHistory(competitionId: String, oldSeasonId: String, nextSeasonLabel: String) {
-        let table = db.getLeagueTable(competitionId: competitionId, seasonId: oldSeasonId)
-        guard !table.isEmpty else { return }
+            
+            // 1. Récupérer le type de compétition
+            guard let competition = db.competitions.first(where: { $0.id == competitionId }) else { return }
+            
+            var winnerId: String?
+            var runnerUpId: String?
+            var thirdPlaceId: String?
+            var semiFinalists: [String]?
+            
+            // --- CAS A : LIGUE (Championnat) ---
+            if competition.type == .league {
+                let table = db.getLeagueTable(competitionId: competitionId, seasonId: oldSeasonId)
+                guard !table.isEmpty else { return }
+                
+                winnerId = table[0].teamId
+                runnerUpId = table.count >= 2 ? table[1].teamId : "UNKNOWN"
+                thirdPlaceId = table.count >= 3 ? table[2].teamId : nil
+            }
+            
+            // --- CAS B : COUPE (Knockout) ---
+            else if competition.type == .cup {
+                // 1. Trouver le match de la FINALE pour cette saison
+                // On cherche un match joué dont l'ID du MatchDay contient "FINAL"
+                if let finalMatch = db.matches.first(where: {
+                    $0.competitionId == competitionId &&
+                    $0.matchDayId.contains("FINAL") && // ex: "MD-CT-FINAL"
+                    $0.status == .played
+                }) {
+                    // Déterminer le vainqueur de la finale
+                    winnerId = determineWinner(of: finalMatch)
+                    
+                    // Le perdant est l'autre équipe
+                    if let w = winnerId {
+                        runnerUpId = (finalMatch.homeTeamId == w) ? finalMatch.awayTeamId : finalMatch.homeTeamId
+                    }
+                }
+                
+                // 2. Trouver les DEMI-FINALISTES
+                // Astuce : Les demi-finalistes sont les équipes qui ont joué les SF mais qui ne sont PAS en finale (Vainqueur ou Finaliste)
+                if let w = winnerId, let r = runnerUpId {
+                    let sfMatches = db.matches.filter {
+                        $0.competitionId == competitionId &&
+                        $0.matchDayId.contains("SF") // ex: "MD-CT-SF-1", "MD-CT-SF-2"
+                    }
+                    
+                    // On collecte tous les IDs d'équipes ayant joué une demie
+                    var teamsInSF = Set<String>()
+                    for match in sfMatches {
+                        if let h = match.homeTeamId { teamsInSF.insert(h) }
+                        if let a = match.awayTeamId { teamsInSF.insert(a) }
+                    }
+                    
+                    // On retire les deux finalistes
+                    teamsInSF.remove(w)
+                    teamsInSF.remove(r)
+                    
+                    // Ce qui reste, ce sont les demi-finalistes éliminés
+                    semiFinalists = Array(teamsInSF)
+                }
+            }
+            
+            // --- SAUVEGARDE ---
+            // On vérifie qu'on a au moins un vainqueur pour créer l'entrée
+            if let winId = winnerId {
+                let entry = CompetitionHistoryEntry(
+                    competitionId: competitionId,
+                    edition: nextSeasonLabel, // ex: "2025-2026"
+                    winnerId: winId,
+                    runnerUpId: runnerUpId ?? "UNKNOWN",
+                    thirdPlaceId: thirdPlaceId,
+                    semiFinalistsIds: semiFinalists,
+                    hostId: nil
+                )
+                
+                if db.currentSave != nil {
+                    db.currentSave?.competitionHistory.append(entry)
+                    print(" 🏆 Historique archivé pour \(competitionId) (\(competition.type.rawValue)) : Vainqueur \(winId)")
+                }
+            } else {
+                print("⚠️ Impossible d'archiver \(competitionId) : Pas de vainqueur trouvé.")
+            }
+    }
         
-        let winnerId = table[0].teamId
-        let runnerUpId = table.count >= 2 ? table[1].teamId : "UNKNOWN"
-        let thirdPlaceId = table.count >= 3 ? table[2].teamId : nil
-        
-        let entry = CompetitionHistoryEntry(
-            competitionId: competitionId,
-            edition: nextSeasonLabel,
-            winnerId: winnerId,
-            runnerUpId: runnerUpId,
-            thirdPlaceId: thirdPlaceId,
-            semiFinalistsIds: nil,
-            hostId: nil
-        )
-        
-        if db.currentSave != nil {
-            db.currentSave?.competitionHistory.append(entry)
-            print(" 🏆 Historique archivé pour \(competitionId) dans la sauvegarde.")
-        }
+    // Helper pour analyser le score d'un match joué et trouver le gagnant
+    private func determineWinner(of match: Match) -> String? {
+            guard let hGoals = match.homeTeamGoals,
+                  let aGoals = match.awayTeamGoals,
+                  let hId = match.homeTeamId,
+                  let aId = match.awayTeamId else { return nil }
+            
+            // 1. Tirs au but (Priorité)
+            if let hPen = match.homePenalties, let aPen = match.awayPenalties {
+                return hPen > aPen ? hId : aId
+            }
+            
+            // 2. Score régulier (ou après prolongations)
+            if hGoals > aGoals { return hId }
+            if aGoals > hGoals { return aId }
+            
+            return nil // Match nul (ne devrait pas arriver en finale de coupe sans TAB)
     }
     
     // MARK: - 3. ROTATION COMPETITION SEASON

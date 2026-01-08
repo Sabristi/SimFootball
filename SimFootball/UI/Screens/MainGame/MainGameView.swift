@@ -483,27 +483,68 @@ struct MainGameView: View {
     
     // MARK: - AVANCEE JOUR & EVENTS
     
+    // MARK: - AVANCEE JOUR & EVENTS
+        
     func handleContinueButton() {
-        if hasBlockingActions {
-            withAnimation { navigateTo(tab: .inbox) }
-            return
-        }
-        
-        let todaysMatches = GameDatabase.shared.getMatches(forDate: gameState.currentDate)
-        let allPlayed = todaysMatches.allSatisfy { $0.status == .played }
-        
-        if !todaysMatches.isEmpty && !allPlayed {
-            if currentTab != .matchDay {
-                withAnimation { navigateTo(tab: .matchDay) }
-            } else {
-                withAnimation { showSimulationOverlay = true }
-            }
-        } else {
-            advanceDate()
-            if currentTab == .matchDay {
+            // 1. PRIORITÉ ABSOLUE : Actions Bloquantes (Boutons rouges "Action requise")
+            if hasBlockingActions {
                 withAnimation { navigateTo(tab: .inbox) }
+                
+                // On sélectionne automatiquement le premier message qui bloque
+                if let blockingMsg = inboxMessages.first(where: { $0.action?.isCompleted == false }) {
+                    selectedMessageId = blockingMsg.id
+                }
+                return
             }
-        }
+            
+            // 2. LOGIQUE FOOTBALL MANAGER : Gestion des Non-Lus
+            // On ne peut pas avancer tant qu'il reste des messages non lus
+            let unreadMsgs = inboxMessages.filter { !gameState.readEventIds.contains($0.id) }
+            
+            if !unreadMsgs.isEmpty {
+                // On redirige vers le message non lu le plus ANCIEN (pour respecter la chronologie)
+                // Comme 'inboxMessages' est trié du plus récent au plus vieux, le .last est le plus ancien.
+                if let oldestUnread = unreadMsgs.last {
+                    jumpToUnreadMessage(message: oldestUnread)
+                }
+                return
+            }
+            
+            // 3. SIMULATION DES MATCHS (Si tout est lu)
+            let todaysMatches = GameDatabase.shared.getMatches(forDate: gameState.currentDate)
+            let allPlayed = todaysMatches.allSatisfy { $0.status == .played }
+            
+            if !todaysMatches.isEmpty && !allPlayed {
+                if currentTab != .matchDay {
+                    withAnimation { navigateTo(tab: .matchDay) }
+                } else {
+                    withAnimation { showSimulationOverlay = true }
+                }
+            } else {
+                // 4. CHANGEMENT DE JOUR (Si aucun match ou tous joués)
+                advanceDate()
+                
+                // Petit confort : Si on change de jour et qu'on était sur le MatchDay, on revient à l'Inbox pour voir les nouvelles
+                if currentTab == .matchDay {
+                    withAnimation { navigateTo(tab: .inbox) }
+                }
+            }
+    }
+        
+    // Helper pour la navigation "Forcée" vers un message
+    func jumpToUnreadMessage(message: SeasonCalendarEvent) {
+            withAnimation {
+                // 1. On va sur l'onglet Inbox
+                navigateTo(tab: .inbox)
+                
+                // 2. On sélectionne le message
+                selectedMessageId = message.id
+                
+                // 3. On le marque comme lu IMMÉDIATEMENT
+                // Ainsi, si l'utilisateur reclique sur "Continuer" tout de suite,
+                // le système passera au message suivant.
+                markAsRead(message.id)
+            }
     }
     
     func advanceDate() {
@@ -537,7 +578,7 @@ struct MainGameView: View {
         
         for event in dailyEvents {
             // On vérifie s'il y a une action configurée en AUTOMATIC et non terminée
-            if var action = event.action, action.executionMode == .automatic, !action.isCompleted {
+            if let action = event.action, action.executionMode == .automatic, !action.isCompleted {
                 
                 print("⚙️ Exécution automatique de l'événement : \(event.label)")
                 
@@ -555,7 +596,7 @@ struct MainGameView: View {
                                             roundId: roundId // <--- C'est ici qu'on passe l'info
                                         )
                                         
-                                        updateEventToReport(eventId: event.id, newLabel: "Résultats : \(event.label)")
+                                        updateEventToReport(eventId: event.id, newLabel: (event.label))
                                     }
                 }
                 

@@ -77,7 +77,7 @@ struct EventAction: Codable, Hashable {
 
 // L'Événement principal (Email / Agenda)
 struct SeasonCalendarEvent: Identifiable, Codable, Hashable {
-    let id: String
+    var id: String
     var seasonId: String        // "2025-2026"
     var calendarDayId: String   // Lien vers le jour du calendrier
     

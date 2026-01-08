@@ -118,77 +118,134 @@ class SeasonTransitionService {
     // MARK: - 1.5 ARCHIVAGE HISTORIQUE ÉQUIPES (PALMARÈS)
     
     func archiveSeasonHistory(currentSeasonId: String) {
-        print("📚 Archivage du palmarès individuel des équipes pour \(currentSeasonId)...")
-        
-        let allClubs = db.clubs
-        var newHistories: [TeamSeasonHistory] = []
-        
-        for club in allClubs {
-            var performances: [CompetitionPerformance] = []
+            print("📚 Archivage du palmarès individuel des équipes pour \(currentSeasonId)...")
             
-            // A. CHAMPIONNATS (League Tables)
-            let tables = db.leagueTables.filter { $0.seasonId == currentSeasonId && $0.teamId == club.id }
+            let allClubs = db.clubs
+            var newHistories: [TeamSeasonHistory] = []
             
-            for entry in tables {
-                let isChamp = entry.position == 1
-                let isRelegated = entry.position >= 15 // Fallback simple si pas de slot
-                let isQualified = entry.position <= 2
+            // On récupère l'historique des compétitions de la saison en cours (pour les Coupes)
+            // Attention : On suppose que archiveCompetitionHistory a déjà été appelé pour toutes les compétitions !
+            // Si ce n'est pas le cas, l'ordre d'appel dans processSeasonTransition est CRUCIAL.
+            // Sinon, on peut scanner directement db.matches ici, mais c'est moins performant.
+            // Option choisie : On scanne db.currentSave?.competitionHistory car c'est la source de vérité finale.
+            
+            let seasonCompHistory = db.currentSave?.competitionHistory.filter { entry in
+                // On essaie de matcher l'édition (ex: "2025-2026") avec l'ID de saison "S_2025_26"
+                // Petite astuce de formatage inverse ou stockage direct de seasonId dans l'entrée history serait mieux,
+                // mais ici on va faire avec ce qu'on a.
+                let seasonYear = currentSeasonId.split(separator: "_")[1] // "2025"
+                return entry.edition.contains(String(seasonYear))
+            } ?? []
+            
+            for club in allClubs {
+                var performances: [CompetitionPerformance] = []
                 
-                // Récupération des infos précises via les slots si dispo
-                var preciseRelegation = isRelegated
-                var precisePromotion = false
-                var preciseContinental = isQualified
+                // A. CHAMPIONNATS (League Tables)
+                let tables = db.leagueTables.filter { $0.seasonId == currentSeasonId && $0.teamId == club.id }
                 
-                if let comp = db.competitions.first(where: { $0.id == entry.competitionId }),
-                   let slots = comp.positionSlots,
-                   let slot = slots.first(where: { $0.rank == entry.position }) {
+                for entry in tables {
+                    let isChamp = entry.position == 1
+                    let isRelegated = entry.position >= 15 // Fallback simple si pas de slot
+                    let isQualified = entry.position <= 2
                     
-                    if slot.type == .relegation { preciseRelegation = true }
-                    if slot.type == .promotion { precisePromotion = true }
-                    if slot.type == .continental { preciseContinental = true }
+                    // Récupération des infos précises via les slots si dispo
+                    var preciseRelegation = isRelegated
+                    var precisePromotion = false
+                    var preciseContinental = isQualified
+                    
+                    if let comp = db.competitions.first(where: { $0.id == entry.competitionId }),
+                       let slots = comp.positionSlots,
+                       let slot = slots.first(where: { $0.rank == entry.position }) {
+                        
+                        if slot.type == .relegation { preciseRelegation = true }
+                        if slot.type == .promotion { precisePromotion = true }
+                        if slot.type == .continental { preciseContinental = true }
+                    }
+                    
+                    let perf = CompetitionPerformance(
+                        competitionId: entry.competitionId,
+                        rankLabel: ordinal(entry.position),
+                        preciseRank: entry.position,
+                        roundReachedId: nil,
+                        matchesPlayed: entry.played,
+                        wins: entry.won,
+                        draws: entry.drawn,
+                        losses: entry.lost,
+                        points: entry.points,
+                        isWinner: isChamp,
+                        isPromoted: precisePromotion,
+                        isRelegated: preciseRelegation,
+                        isContinentalQualified: preciseContinental
+                    )
+                    performances.append(perf)
                 }
                 
-                let perf = CompetitionPerformance(
-                    competitionId: entry.competitionId,
-                    rankLabel: ordinal(entry.position),
-                    preciseRank: entry.position,
-                    roundReachedId: nil,
-                    matchesPlayed: entry.played,
-                    wins: entry.won,
-                    draws: entry.drawn,
-                    losses: entry.lost,
-                    points: entry.points,
-                    isWinner: isChamp,
-                    isPromoted: precisePromotion,
-                    isRelegated: preciseRelegation,
-                    isContinentalQualified: preciseContinental
-                )
-                performances.append(perf)
+                // B. COUPES (Via l'historique global des compétitions)
+                // On cherche si le club apparaît comme Vainqueur, Finaliste ou Demi-finaliste
+                for compEntry in seasonCompHistory {
+                    // On vérifie le type de compétition pour être sûr que c'est une coupe
+                    guard let comp = db.competitions.first(where: { $0.id == compEntry.competitionId }),
+                          (comp.type == .cup || comp.scope == .domestic) else { continue }
+                    
+                    var rankLabel: String? = nil
+                    var isWinner = false
+                    var roundId: String? = nil
+                    
+                    if compEntry.winnerId == club.id {
+                        rankLabel = "Winner 🏆"
+                        isWinner = true
+                        roundId = "FINAL"
+                    } else if compEntry.runnerUpId == club.id {
+                        rankLabel = "Finalist 🥈"
+                        roundId = "FINAL"
+                    } else if let semis = compEntry.semiFinalistsIds, semis.contains(club.id) {
+                        rankLabel = "Semi-Finalist"
+                        roundId = "SF"
+                    }
+                    
+                    if let label = rankLabel {
+                        let perf = CompetitionPerformance(
+                            competitionId: compEntry.competitionId,
+                            rankLabel: label,
+                            preciseRank: nil, // Pas de rang précis en coupe
+                            roundReachedId: roundId,
+                            matchesPlayed: nil, // Difficile à calculer sans tout scanner
+                            wins: nil,
+                            draws: nil,
+                            losses: nil,
+                            points: nil,
+                            isWinner: isWinner,
+                            isPromoted: false,
+                            isRelegated: false,
+                            isContinentalQualified: isWinner // Souvent le vainqueur va en coupe continentale
+                        )
+                        performances.append(perf)
+                    }
+                }
+                
+                // C. CRÉATION DE L'ENTRÉE SAISON
+                if !performances.isEmpty {
+                    let label = currentSeasonId
+                        .replacingOccurrences(of: "S_", with: "")
+                        .replacingOccurrences(of: "_", with: "/")
+                    
+                    let history = TeamSeasonHistory(
+                        id: UUID().uuidString,
+                        teamId: club.id,
+                        seasonId: currentSeasonId,
+                        yearLabel: label,
+                        performances: performances,
+                        totalGoalsScored: tables.reduce(0) { $0 + $1.goalsFor },
+                        totalGoalsConceded: tables.reduce(0) { $0 + $1.goalsAgainst },
+                        topScorerName: nil,
+                        averageAttendance: nil
+                    )
+                    newHistories.append(history)
+                }
             }
             
-            // C. CRÉATION DE L'ENTRÉE SAISON
-            if !performances.isEmpty {
-                let label = currentSeasonId
-                    .replacingOccurrences(of: "S_", with: "")
-                    .replacingOccurrences(of: "_", with: "/")
-                
-                let history = TeamSeasonHistory(
-                    id: UUID().uuidString,
-                    teamId: club.id,
-                    seasonId: currentSeasonId,
-                    yearLabel: label,
-                    performances: performances,
-                    totalGoalsScored: tables.reduce(0) { $0 + $1.goalsFor },
-                    totalGoalsConceded: tables.reduce(0) { $0 + $1.goalsAgainst },
-                    topScorerName: nil,
-                    averageAttendance: nil
-                )
-                newHistories.append(history)
-            }
-        }
-        
-        db.teamHistories.append(contentsOf: newHistories)
-        print("✅ Historique individuel généré pour \(newHistories.count) clubs.")
+            db.teamHistories.append(contentsOf: newHistories)
+            print("✅ Historique individuel généré pour \(newHistories.count) clubs.")
     }
     
     // MARK: - 2. HISTORIQUE COMPÉTITION (Sauvegarde)
@@ -483,9 +540,13 @@ class SeasonTransitionService {
                         // Calcul savant pour garder le jour de la semaine (Mardi -> Mardi)
                         let newDate = calculateDateForNextYear(currentDate: currentEventDate, standardDate: anchorDate)
                         
+                        let newEventId = UUID().uuidString
+                        
                         // Mise à jour IN-PLACE (On déplace l'événement vers la nouvelle saison)
+                        db.calendarEvents[i].id = newEventId
                         db.calendarEvents[i].seasonId = nextSeasonId
                         db.calendarEvents[i].date = newDate
+                        db.calendarEvents[i].standardDate = anchorDate
                         
                         // Mise à jour de l'ID technique du jour (Pour l'affichage calendrier)
                         db.calendarEvents[i].calendarDayId = newDate.formatted(.iso8601) // Ou votre format "DAY_yyyy_MM_dd"

@@ -24,10 +24,10 @@ class SeasonTransitionManager {
             return
         }
         
-        // 2. GESTION DU CYCLE DE 4 ANS
+        // 2. GESTION DU CYCLE DE 4 ANS (Mondial, Euro, JO...)
         let currentCycle = currentSave.currentCycleYear
         var nextCycleYear = currentCycle + 1
-        if nextCycleYear > 4 { nextCycleYear = 1 } // Reset après 4 ans (Cycle Olympique/Mondial)
+        if nextCycleYear > 4 { nextCycleYear = 1 }
         
         print(" 📅 Cycle Olympique : Passage de l'année \(currentCycle) à \(nextCycleYear)")
         
@@ -41,95 +41,77 @@ class SeasonTransitionManager {
         let nextSeasonId = "S_\(nextYear)_\(nextYear + 1 - 2000)"
         let nextSeasonLabel = "\(currentYear)-\(nextYear)"
         
-        // ✅ 4. TRAITEMENTS DE FIN DE SAISON (Ordre important)
-        
-        // A. Archiver les stats individuelles (avant que les joueurs/clubs ne bougent)
-        service.archiveSeasonHistory(currentSeasonId: oldSeasonId)
-        
-        // B. Gérer les montées et descentes (Mise à jour des leagueId des clubs)
-        service.processPromotionsAndRelegations(currentSeasonId: oldSeasonId)
-        
-        // C. Clôturer la saison globale actuelle et ouvrir la nouvelle
-        service.closeCurrentGlobalSeason(seasonId: oldSeasonId)
-        service.createNextGlobalSeason(currentYear: currentYear)
-                
-        // ✅ 5. TRAITEMENT DES COMPÉTITIONS (Ligues & Coupes)
-        // On récupère d'abord les IDs des pays sélectionnés pour optimiser le filtre
+        // ✅ 4. SÉLECTION DES COMPÉTITIONS
         let selectedCountryIds = currentSave.selectedCountries.map { $0.id }
         
-        // 🛠️ DEBUG & FIX : Si la liste est vide (problème de décodage), on force le MAROC
         if selectedCountryIds.isEmpty {
-                    print("⚠️ [DEBUG] selectedCountries est vide (Erreur décodage ?)")
+            print("⚠️ [DEBUG] selectedCountries est vide (Erreur décodage ?)")
         } else {
-                    print("✅ [DEBUG] Pays sélectionnés chargés : \(selectedCountryIds)")
+            print("✅ [DEBUG] Pays sélectionnés chargés : \(selectedCountryIds)")
         }
-                      
+        
+        // A. Compétitions de la saison qui se termine (pour l'archivage)
         let pastCompetitions = db.competitions.filter { comp in
-                           
-                    // CAS 1 : Compétition Domestique
-                    if comp.scope == .domestic {
-                        // On ne garde LA compétition QUE SI son pays est dans la liste des pays sélectionnés
-                        return selectedCountryIds.contains(comp.countryId)
-                    }
-                    
-                    // CAS 2 : Compétition Non-Domestique (Internationale / Continentale)
-                    // (Si on arrive ici, scope != domestic)
-                    
-                    // 2a. Si c'est Annuel ET que ce n'est pas domestique
-                    if comp.frequency == .annual && comp.scope != .domestic { return true }
-                           
-                    // 2b. Si c'est Cyclique (ex: World Cup, Euro), on vérifie l'année du cycle
-                    return comp.occurrenceYears.contains(currentCycle)
+            if comp.scope == .domestic {
+                return selectedCountryIds.contains(comp.countryId)
+            }
+            if comp.frequency == .annual && comp.scope != .domestic { return true }
+            return comp.occurrenceYears.contains(currentCycle)
         }
-                      
-        print("📋 Compétitions passées pour le cycle \(currentCycle) : \(pastCompetitions.count)")
-                
+        
+        // B. Compétitions de la saison qui arrive (pour la préparation)
         let futurCompetitions = db.competitions.filter { comp in
-                           
-                    // CAS 1 : Compétition Domestique
-                    if comp.scope == .domestic {
-                        // On ne garde LA compétition QUE SI son pays est dans la liste des pays sélectionnés
-                        return selectedCountryIds.contains(comp.countryId)
-                    }
-                    
-                    // CAS 2 : Compétition Non-Domestique (Internationale / Continentale)
-                    // (Si on arrive ici, scope != domestic)
-                    
-                    // 2a. Si c'est Annuel ET que ce n'est pas domestique
-                    if comp.frequency == .annual && comp.scope != .domestic { return true }
-                           
-                    // 2b. Si c'est Cyclique (ex: World Cup, Euro), on vérifie l'année du cycle
-                    return comp.occurrenceYears.contains(nextCycleYear)
+            if comp.scope == .domestic {
+                return selectedCountryIds.contains(comp.countryId)
+            }
+            if comp.frequency == .annual && comp.scope != .domestic { return true }
+            return comp.occurrenceYears.contains(nextCycleYear)
         }
-                      
-        print("📋 Compétitions passées pour le cycle \(nextCycleYear) : \(futurCompetitions.count)")
+        
+        print("📋 Compétitions passées (Cycle \(currentCycle)) : \(pastCompetitions.count)")
+        print("📋 Compétitions futures (Cycle \(nextCycleYear)) : \(futurCompetitions.count)")
         
         
+        // ✅ 5. TRAITEMENTS DE FIN DE SAISON (Ordre CRITIQUE)
+        
+        // A. ARCHIVAGE PALMARÈS COMPÉTITIONS (EN PREMIER)
+        // Indispensable de le faire AVANT l'historique des équipes pour que les vainqueurs de coupe soient connus.
         for competition in pastCompetitions {
-            print("   👉 Traitement de : \(competition.shortName)")
+            print("   👉 Archivage Palmarès Compétition : \(competition.shortName)")
             
-            // D. Archiver le palmarès de la compétition (Vainqueur de la saison passée)
             service.archiveCompetitionHistory(
                 competitionId: competition.id,
                 oldSeasonId: oldSeasonId,
                 nextSeasonLabel: nextSeasonLabel
             )
             
-            // On supprime les matchs joués pour alléger la sauvegarde, car le palmarès est archivé.
-            // On garde les MatchDays pour avoir une trace des dates dans le calendrier si besoin.
-            if competition.type == .cup  && competition.scope == .domestic {
-                            service.cleanUpSeasonMatches(
-                                competitionId: competition.id,
-                                seasonId: oldSeasonId
-                            )
+            // Nettoyage des matchs de coupe (pour alléger la sauvegarde)
+            // On garde les championnats pour les stats détaillées si besoin, mais les coupes sont souvent one-shot.
+            if competition.type == .cup && competition.scope == .domestic {
+                service.cleanUpSeasonMatches(competitionId: competition.id, seasonId: oldSeasonId)
             }
-            
         }
         
+        // B. ARCHIVAGE PALMARÈS INDIVIDUEL (ENSUITE)
+        // Génère l'historique de chaque club (Championnat + Coupe via l'historique global)
+        service.archiveSeasonHistory(currentSeasonId: oldSeasonId)
+        
+        // C. GESTION DES MONTÉES / DESCENTES
+        // Modifie les leagueId des clubs pour la saison prochaine
+        service.processPromotionsAndRelegations(currentSeasonId: oldSeasonId)
+        
+        // D. CLÔTURE SAISON GLOBALE
+        // Ferme l'objet Saison S_2025_26 et crée S_2026_27
+        service.closeCurrentGlobalSeason(seasonId: oldSeasonId)
+        service.createNextGlobalSeason(currentYear: currentYear)
+        
+        
+        // ✅ 6. PRÉPARATION DE LA NOUVELLE SAISON
+        
         for competition in futurCompetitions {
-            print("   👉 Traitement de : \(competition.shortName)")
+            print("   👉 Préparation de : \(competition.shortName)")
             
-            // E. Rotation de la saison (Création de l'objet CompetitionSeason pour la nouvelle année)
+            // E. Rotation de la saison (Création de l'objet CompetitionSeason)
             service.rotateCompetitionSeason(
                 competitionId: competition.id,
                 oldSeasonId: oldSeasonId,
@@ -137,7 +119,7 @@ class SeasonTransitionManager {
                 nextYear: nextYear
             )
             
-            // F. Recyclage des journées (MatchDays) avec décalage de date intelligent
+            // F. Recyclage des journées (MatchDays) avec décalage intelligent des dates
             service.recycleMatchDays(
                 competitionId: competition.id,
                 oldSeasonId: oldSeasonId,
@@ -150,21 +132,19 @@ class SeasonTransitionManager {
                 oldSeasonId: oldSeasonId,
                 nextSeasonId: nextSeasonId
             )
-            
         }
         
-        // ✅ 6. RECYCLAGE GLOBAL DES ÉVÉNEMENTS (CALENDRIER)
-        // On le fait une seule fois pour tout le jeu, indépendamment des compétitions
+        // ✅ 7. RECYCLAGE GLOBAL DES ÉVÉNEMENTS (CALENDRIER)
+        // On génère de nouveaux événements (avec nouveaux IDs pour le badge "Non Lu")
         service.recycleSeasonCalendarEvents(
-                    oldSeasonId: oldSeasonId,
-                    nextSeasonId: nextSeasonId,
-                    nextCycleYear: nextCycleYear
+            oldSeasonId: oldSeasonId,
+            nextSeasonId: nextSeasonId,
+            nextCycleYear: nextCycleYear
         )
         
-        // 6. SAUVEGARDE FINALE DE TOUTES LES DONNÉES
+        // 8. SAUVEGARDE FINALE
         db.saveAllData()
         
         print("✅ [MANAGER] TRANSITION VERS \(nextYear) TERMINÉE AVEC SUCCÈS.\n")
     }
-    
 }

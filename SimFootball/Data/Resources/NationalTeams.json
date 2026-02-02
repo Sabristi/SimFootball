@@ -1,0 +1,164 @@
+[
+  {
+    "id": "FRA_A",
+    "countryId": "FRA",
+    "type": "A",
+    "reputation": 9200,
+    "stadiumId": "STADE_DE_FRANCE",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "ENG_A",
+    "countryId": "ENG",
+    "type": "A",
+    "reputation": 8800,
+    "stadiumId": "WEMBLEY",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "ESP_A",
+    "countryId": "ESP",
+    "type": "A",
+    "reputation": 8700,
+    "stadiumId": "BERNABEU",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "DEU_A",
+    "countryId": "DEU",
+    "type": "A",
+    "reputation": 8600,
+    "stadiumId": "ALLIANZ_ARENA",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "ITA_A",
+    "countryId": "ITA",
+    "type": "A",
+    "reputation": 8500,
+    "stadiumId": "OLIMPICO_ROMA",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "BRA_A",
+    "countryId": "BRA",
+    "type": "A",
+    "reputation": 9100,
+    "stadiumId": "MARACANA",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "ARG_A",
+    "countryId": "ARG",
+    "type": "A",
+    "reputation": 9300,
+    "stadiumId": "MONUMENTAL",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "MAR_A",
+    "countryId": "MAR",
+    "type": "A",
+    "reputation": 8200,
+    "stadiumId": "STAD-MAR-005",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "SEN_A",
+    "countryId": "SEN",
+    "type": "A",
+    "reputation": 7900,
+    "stadiumId": "DIAMNIADIO",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "EGY_A",
+    "countryId": "EGY",
+    "type": "A",
+    "reputation": 7600,
+    "stadiumId": "CAIRO_INTL",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "NGA_A",
+    "countryId": "NGA",
+    "type": "A",
+    "reputation": 7700,
+    "stadiumId": "ABUJA_NATL",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "CMR_A",
+    "countryId": "CMR",
+    "type": "A",
+    "reputation": 7400,
+    "stadiumId": "OLEMBE",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "CIV_A",
+    "countryId": "CIV",
+    "type": "A",
+    "reputation": 7500,
+    "stadiumId": "EBIMPE",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "GHA_A",
+    "countryId": "GHA",
+    "type": "A",
+    "reputation": 7300,
+    "stadiumId": "ACCRA_SPORTS",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "ALG_A",
+    "countryId": "ALG",
+    "type": "A",
+    "reputation": 7600,
+    "stadiumId": "NELSON_MANDELA",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "TUN_A",
+    "countryId": "TUN",
+    "type": "A",
+    "reputation": 7500,
+    "stadiumId": "RADES",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "MLI_A",
+    "countryId": "MLI",
+    "type": "A",
+    "reputation": 7200,
+    "stadiumId": "26_MARS",
+    "managerId": null,
+    "captainId": null
+  },
+  {
+    "id": "RSA_A",
+    "countryId": "RSA",
+    "type": "A",
+    "reputation": 7100,
+    "stadiumId": "FNB_STADIUM",
+    "managerId": null,
+    "captainId": null
+  }
+]

@@ -7,8 +7,13 @@
     "region": null,
     "continent": "Europe",
     "confederationId": "UEFA",
-    "type": "Standard",
-    "isPlayable": false
+    "isPlayable": false,
+    "youthRating": 170,
+    "developmentState": "Developed",
+    "economicFactor": 18,
+    "gameImportance": "Very Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 2
   },
   {
     "id": "ENG",
@@ -18,8 +23,13 @@
     "region": null,
     "continent": "Europe",
     "confederationId": "UEFA",
-    "type": "Standard",
-    "isPlayable": false
+    "isPlayable": false,
+    "youthRating": 160,
+    "developmentState": "Developed",
+    "economicFactor": 20,
+    "gameImportance": "Very Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 4
   },
   {
     "id": "ESP",
@@ -29,8 +39,13 @@
     "region": null,
     "continent": "Europe",
     "confederationId": "UEFA",
-    "type": "Standard",
-    "isPlayable": false
+    "isPlayable": false,
+    "youthRating": 175,
+    "developmentState": "Developed",
+    "economicFactor": 17,
+    "gameImportance": "Very Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 8
   },
   {
     "id": "DEU",
@@ -40,8 +55,13 @@
     "region": null,
     "continent": "Europe",
     "confederationId": "UEFA",
-    "type": "Standard",
-    "isPlayable": false
+    "isPlayable": false,
+    "youthRating": 165,
+    "developmentState": "Developed",
+    "economicFactor": 19,
+    "gameImportance": "Very Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 16
   },
   {
     "id": "ITA",
@@ -51,8 +71,13 @@
     "region": null,
     "continent": "Europe",
     "confederationId": "UEFA",
-    "type": "Standard",
-    "isPlayable": false
+    "isPlayable": false,
+    "youthRating": 160,
+    "developmentState": "Developed",
+    "economicFactor": 16,
+    "gameImportance": "Very Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 9
   },
   {
     "id": "BRA",
@@ -62,8 +87,13 @@
     "region": null,
     "continent": "South America",
     "confederationId": "CONMEBOL",
-    "type": "Standard",
-    "isPlayable": false
+    "isPlayable": false,
+    "youthRating": 185,
+    "developmentState": "Developing",
+    "economicFactor": 12,
+    "gameImportance": "Very Important",
+    "yearsToGainNationality": 4,
+    "fifaRanking": 3
   },
   {
     "id": "ARG",
@@ -73,8 +103,13 @@
     "region": null,
     "continent": "South America",
     "confederationId": "CONMEBOL",
-    "type": "Standard",
-    "isPlayable": false
+    "isPlayable": false,
+    "youthRating": 180,
+    "developmentState": "Developing",
+    "economicFactor": 10,
+    "gameImportance": "Very Important",
+    "yearsToGainNationality": 2,
+    "fifaRanking": 1
   },
   {
     "id": "MAR",
@@ -84,8 +119,13 @@
     "region": null,
     "continent": "Africa",
     "confederationId": "CAF",
-    "type": "Standard",
-    "isPlayable": true
+    "isPlayable": true,
+    "youthRating": 130,
+    "developmentState": "Developing",
+    "economicFactor": 10,
+    "gameImportance": "Very Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 13
   },
   {
     "id": "SEN",
@@ -95,8 +135,13 @@
     "region": null,
     "continent": "Africa",
     "confederationId": "CAF",
-    "type": "Standard",
-    "isPlayable": false
+    "isPlayable": false,
+    "youthRating": 120,
+    "developmentState": "Developing",
+    "economicFactor": 7,
+    "gameImportance": "Very Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 17
   },
   {
     "id": "EGY",
@@ -106,8 +151,13 @@
     "region": null,
     "continent": "Africa",
     "confederationId": "CAF",
-    "type": "Standard",
-    "isPlayable": true
+    "isPlayable": true,
+    "youthRating": 115,
+    "developmentState": "Developing",
+    "economicFactor": 8,
+    "gameImportance": "Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 33
   },
   {
     "id": "NGA",
@@ -117,8 +167,13 @@
     "region": null,
     "continent": "Africa",
     "confederationId": "CAF",
-    "type": "Standard",
-    "isPlayable": false
+    "isPlayable": false,
+    "youthRating": 125,
+    "developmentState": "Developing",
+    "economicFactor": 9,
+    "gameImportance": "Very Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 28
   },
   {
     "id": "CMR",
@@ -128,8 +183,13 @@
     "region": null,
     "continent": "Africa",
     "confederationId": "CAF",
-    "type": "Standard",
-    "isPlayable": false
+    "isPlayable": false,
+    "youthRating": 110,
+    "developmentState": "Developing",
+    "economicFactor": 6,
+    "gameImportance": "Very Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 43
   },
   {
     "id": "CIV",
@@ -139,8 +199,13 @@
     "region": null,
     "continent": "Africa",
     "confederationId": "CAF",
-    "type": "Standard",
-    "isPlayable": false
+    "isPlayable": false,
+    "youthRating": 115,
+    "developmentState": "Developing",
+    "economicFactor": 7,
+    "gameImportance": "Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 40
   },
   {
     "id": "GHA",
@@ -150,8 +215,13 @@
     "region": null,
     "continent": "Africa",
     "confederationId": "CAF",
-    "type": "Standard",
-    "isPlayable": false
+    "isPlayable": false,
+    "youthRating": 110,
+    "developmentState": "Developing",
+    "economicFactor": 6,
+    "gameImportance": "Very Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 60
   },
   {
     "id": "ALG",
@@ -161,8 +231,13 @@
     "region": null,
     "continent": "Africa",
     "confederationId": "CAF",
-    "type": "Standard",
-    "isPlayable": true
+    "isPlayable": true,
+    "youthRating": 125,
+    "developmentState": "Developing",
+    "economicFactor": 9,
+    "gameImportance": "Very Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 30
   },
   {
     "id": "TUN",
@@ -172,8 +247,13 @@
     "region": null,
     "continent": "Africa",
     "confederationId": "CAF",
-    "type": "Standard",
-    "isPlayable": true
+    "isPlayable": true,
+    "youthRating": 105,
+    "developmentState": "Developing",
+    "economicFactor": 8,
+    "gameImportance": "Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 32
   },
   {
     "id": "MLI",
@@ -183,8 +263,13 @@
     "region": null,
     "continent": "Africa",
     "confederationId": "CAF",
-    "type": "Standard",
-    "isPlayable": false
+    "isPlayable": false,
+    "youthRating": 100,
+    "developmentState": "Developing",
+    "economicFactor": 5,
+    "gameImportance": "Important",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 45
   },
   {
     "id": "RSA",
@@ -194,7 +279,12 @@
     "region": null,
     "continent": "Africa",
     "confederationId": "CAF",
-    "type": "Standard",
-    "isPlayable": true
+    "isPlayable": true,
+    "youthRating": 105,
+    "developmentState": "Developing",
+    "economicFactor": 11,
+    "gameImportance": "Medium",
+    "yearsToGainNationality": 5,
+    "fifaRanking": 58
   }
 ]
